@@ -3,579 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Desa Makmur Jaya</title>
-    <!-- Menggunakan Font Poppins dari Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Profil Desa Sungai Lurus</title>
     <style>
-        /* Variabel Warna & Reset CSS */
         :root {
-            --primary-color: #2c5e3b; /* Hijau alam/desa */
-            --secondary-color: #8db596;
-            --accent-color: #e5a93b; /* Kuning hangat */
-            --dark-color: #2d3436;
-            --light-color: #f4f7f6;
-            --white: #ffffff;
+            --primary: #1b4332; /* Hijau Tua Klasik (Forest Green) */
+            --secondary: #40916c; /* Hijau Daun Elegan */
+            --accent: #d8f3dc; /* Hijau Sangat Muda */
+            --dark: #2d312e; /* Hitam Arang Klasik */
+            --bg: #f4f7f5; /* Background Lembut */
+            --gold: #b58d3d; /* Aksen Emas Klasik */
         }
-
+        
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--light-color);
+            background-color: var(--bg);
+            color: var(--dark);
+            line-height: 1.7;
         }
 
-        /* Header & Navigasi */
         header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            background: linear-gradient(135deg, #081c15, var(--primary));
+            color: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
             position: relative;
         }
 
-        .logo h1 {
-            font-size: 24px;
-            color: var(--primary-color);
-            font-weight: 700;
+        header::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px auto 0;
         }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 600;
-            transition: color 0.3s ease;
+        header p {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.85;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        /* Tombol Navigasi / Hamburger Menu (Tersembunyi di Desktop) */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
+        section {
+            background: #ffffff;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e1e8e4;
         }
 
-        .menu-toggle .bar {
-            height: 3px;
-            width: 100%;
-            background-color: var(--primary-color);
-            border-radius: 10px;
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        /* Grid Data Kependudukan */
+        .grid-data {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 25px 20px;
+            border-radius: 2px;
+            text-align: center;
+            border: 1px solid #d8f3dc;
+            border-top: 4px solid var(--primary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
             transition: all 0.3s ease;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(44, 94, 59, 0.8), rgba(44, 94, 59, 0.8)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-            padding: 20px;
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(27,67,50,0.1);
+            border-color: var(--gold);
         }
 
-        .hero h2 {
-            font-size: 42px;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 20px;
-            max-width: 600px;
-        }
-
-        .btn-cta {
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 10px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn-cta:hover {
-            background-color: #cb922d;
-        }
-
-        /* Section Global */
-        section {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h3 {
-            font-size: 28px;
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .section-title h3::after {
-            content: '';
-            width: 50%;
-            height: 3px;
-            background-color: var(--accent-color);
-            position: absolute;
-            bottom: 0;
-            left: 25%;
-        }
-
-        /* Profil / Tentang */
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-text {
-            flex: 1 1 500px;
-        }
-
-        .about-text h4 {
-            font-size: 22px;
+        .card h3 {
+            font-size: 1rem;
+            color: #555;
             margin-bottom: 15px;
-            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
         }
 
-        .vision-mission {
-            margin-top: 20px;
-        }
-
-        .vision-mission ul {
-            list-style-position: inside;
-            margin-top: 5px;
-        }
-
-        .about-img {
-            flex: 1 1 400px;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Statistik / Informasi Cepat */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .stat-card {
-            background-color: var(--white);
-            padding: 30px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .stat-card h4 {
-            font-size: 32px;
-            color: var(--primary-color);
+        .card .angka {
+            font-size: 2.4rem;
+            color: var(--primary);
+            font-family: 'Times New Roman', Times, serif;
             margin-bottom: 5px;
         }
 
-        .stat-card p {
-            font-size: 14px;
+        .card p {
+            font-size: 0.9rem;
             color: #777;
+            font-style: italic;
         }
 
-        /* Aparatur Desa */
-        .aparatur-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .aparatur-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .aparatur-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .aparatur-img {
+        /* Tabel & Struktur */
+        table {
             width: 100%;
-            height: 250px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: 14px;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: #ffffff;
         }
 
-        .aparatur-info {
-            padding: 20px;
+        table th {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 15px;
+            text-align: left;
+            font-weight: normal;
+            letter-spacing: 1px;
+            border-bottom: 3px solid var(--gold);
         }
 
-        .aparatur-info h4 {
-            font-size: 18px;
-            color: var(--dark-color);
+        table td {
+            padding: 14px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9efe9;
+            font-size: 1.05rem;
         }
 
-        .aparatur-info p {
-            color: var(--primary-color);
-            font-size: 14px;
-            font-weight: 600;
+        table tr:nth-child(even) {
+            background-color: #fafdfb;
         }
 
-        /* Kontak */
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
+        table tr:hover {
+            background-color: #f1f7f3;
         }
 
-        .contact-info {
-            flex: 1 1 400px;
+        .mutasi-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 15px;
+            font-style: italic;
         }
 
-        .contact-info h4 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .contact-info p {
-            margin-bottom: 10px;
-        }
-
-        .contact-form {
-            flex: 1 1 400px;
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-        }
-
-        .form-btn {
-            background-color: var(--primary-color);
-            color: var(--white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
-        }
-
-        .form-btn:hover {
-            background-color: #1e3f27;
-        }
-
-        /* Footer */
         footer {
-            background-color: var(--primary-color);
-            color: var(--white);
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 30px;
+            background: #081c15;
+            color: #ffffff;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            border-top: 3px solid var(--gold);
+            margin-top: 60px;
         }
-
+        
         footer p {
-            font-size: 14px;
-        }
-
-        /* Responsive Mobile & Hamburger Menu */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex; /* Memunculkan tombol hamburger */
-            }
-
-            .nav-links {
-                display: none; /* Menyembunyikan menu bawaan */
-                flex-direction: column;
-                position: absolute;
-                top: 75px;
-                left: 0;
-                width: 100%;
-                background-color: var(--white);
-                padding: 20px;
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-                gap: 15px;
-                text-align: center;
-            }
-
-            /* Kelas .active dipicu menggunakan JavaScript */
-            .nav-links.active {
-                display: flex; 
-            }
-
-            /* Animasi Tombol Hamburger Berubah Menjadi Silang 'X' */
-            .menu-toggle.active .bar:nth-child(1) {
-                transform: translateY(9px) rotate(45deg);
-            }
-            .menu-toggle.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-            .menu-toggle.active .bar:nth-child(3) {
-                transform: translateY(-9px) rotate(-45deg);
-            }
-
-            .hero h2 {
-                font-size: 32px;
-            }
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header & Navigasi -->
     <header>
-        <div class="navbar">
-            <div class="logo">
-                <h1>Desa Makmur Jaya</h1>
-            </div>
-            
-            <!-- Tombol Hamburger Menu -->
-            <button class="menu-toggle" id="mobile-menu" aria-label="Buka Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-
-            <ul class="nav-links" id="nav-list">
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#aparatur">Aparatur</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
-        </div>
+        <h1>Profil Desa Sungai Lurus</h1>
+        <p>Sistem Informasi Demografi & Aparatur Pemerintahan Desa</p>
     </header>
 
-    <!-- Hero Section -->
-    <section id="beranda" style="padding: 0; max-width: 100%;">
-        <div class="hero">
-            <h2>Selamat Datang di Desa Makmur Jaya</h2>
-            <p>Membangun masyarakat yang asri, mandiri, sejahtera, dan berbasis gotong royong.</p>
-            <a href="#profil" class="btn-cta">Pelajari Lebih Lanjut</a>
-        </div>
-    </section>
+    <div class="container">
+        
+        <section>
+            <h2>Data Kependudukan</h2>
+            <div class="grid-data">
+                <div class="card">
+                    <h3>Total Penduduk</h3>
+                    <div class="angka">1.250</div>
+                    <p>Jiwa</p>
+                </div>
+                <div class="card">
+                    <h3>Jumlah KK</h3>
+                    <div class="angka">350</div>
+                    <p>Kepala Keluarga</p>
+                </div>
+                <div class="card">
+                    <h3>Laki-Laki</h3>
+                    <div class="angka">630</div>
+                    <p>Jiwa</p>
+                </div>
+                <div class="card">
+                    <h3>Perempuan</h3>
+                    <div class="angka">620</div>
+                    <p>Jiwa</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Profil / Tentang Section -->
-    <section id="profil">
-        <div class="section-title">
-            <h3>Profil Desa</h3>
-        </div>
-        <div class="about-content">
-            <div class="about-text">
-                <h4>Tentang Kami</h4>
-                <p>Desa Makmur Jaya merupakan daerah yang terletak di wilayah subur dengan potensi pertanian dan perkebunan yang melimpah. Didirikan dengan landasan kekeluargaan, masyarakat desa kami hidup berdampingan secara harmonis dengan menjunjung tinggi nilai-nilai tradisi adat.</p>
-                
-                <div class="vision-mission">
-                    <h4>Visi</h4>
-                    <p><em>"Menjadi desa mandiri, transparan, dan sejahtera melalui optimalisasi potensi lokal."</em></p>
-                    <br>
-                    <h4>Misi</h4>
-                    <ul>
-                        <li>Meningkatkan kualitas pelayanan administrasi publik yang responsif.</li>
-                        <li>Mengembangkan sektor pertanian dan UMKM berbasis teknologi lokal.</li>
-                        <li>Memelihara kerukunan antarwarga dan melestarikan budaya lokal.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sawah di Desa">
-            </div>
-        </div>
+        <section>
+            <h2>Status & Mutasi Warga (30 Hari Terakhir)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori Status</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Warga Asli</strong></td>
+                        <td>1.180 Jiwa</td>
+                        <td>Menetap secara turun-temurun / lahir di desa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Warga Pendatang</strong></td>
+                        <td>70 Jiwa</td>
+                        <td>Domisili sementara / pindahan dari luar daerah</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kelahiran <small>(30 hari terakhir)</small></strong></td>
+                        <td>4 Bayi</td>
+                        <td>Laporan data kelahiran baru</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kematian <small>(30 hari terakhir)</small></strong></td>
+                        <td>1 Orang</td>
+                        <td>Laporan data akta kematian resmi</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="mutasi-info">*Data di atas diperbarui secara berkala oleh Sekretariat Urusan Administrasi Desa Sungai Lurus.</p>
+        </section>
 
-        <!-- Statistik Desa -->
-        <div class="stats-container">
-            <div class="stat-card">
-                <h4>1,200</h4>
-                <p>Total Penduduk</p>
-            </div>
-            <div class="stat-card">
-                <h4>350</h4>
-                <p>Kepala Keluarga</p>
-            </div>
-            <div class="stat-card">
-                <h4>150 Ha</h4>
-                <p>Luas Wilayah</p>
-            </div>
-            <div class="stat-card">
-                <h4>12</h4>
-                <p>Rukun Tetangga (RT)</p>
-            </div>
-        </div>
-    </section>
+        <section>
+            <h2>Struktur Aparatur Pemerintahan Desa</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jabatan Birokrasi</th>
+                        <th>Nama Pejabat Resmi</th>
+                        <th>Status Jabatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kepala Desa</strong></td>
+                        <td>Ahmad Syaifuddin, S.Sos</td>
+                        <td>Aktif / Menjabat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sekretaris Desa</strong></td>
+                        <td>Siti Rahmah</td>
+                        <td>Aktif / Menjabat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kaur Keuangan</strong></td>
+                        <td>Budi Setiawan</td>
+                        <td>Aktif / Menjabat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kaur Kesra & Pelayanan</strong></td>
+                        <td>Hendra Wijaya</td>
+                        <td>Aktif / Menjabat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kaur Umum & Perencanaan</strong></td>
+                        <td>Diana Lestari</td>
+                        <td>Aktif / Menjabat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kepala Dusun I</strong></td>
+                        <td>Rudi Hartono</td>
+                        <td>Aktif / Menjabat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kepala Dusun II</strong></td>
+                        <td>M. Faisal</td>
+                        <td>Aktif / Menjabat</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-    <!-- Aparatur Desa Section -->
-    <section id="aparatur">
-        <div class="section-title">
-            <h3>Aparatur Desa</h3>
-        </div>
-        <div class="aparatur-grid">
-            <!-- Aparatur 1 -->
-            <div class="aparatur-card">
-                <div class="aparatur-img">
-                    [ Foto Kepala Desa ]
-                </div>
-                <div class="aparatur-info">
-                    <h4>H. Ahmad Subarjo</h4>
-                    <p>Kepala Desa</p>
-                </div>
-            </div>
-            <!-- Aparatur 2 -->
-            <div class="aparatur-card">
-                <div class="aparatur-img">
-                    [ Foto Sekdes ]
-                </div>
-                <div class="aparatur-info">
-                    <h4>Siti Aminah, S.Pd</h4>
-                    <p>Sekretaris Desa</p>
-                </div>
-            </div>
-            <!-- Aparatur 3 -->
-            <div class="aparatur-card">
-                <div class="aparatur-img">
-                    [ Foto Bendahara ]
-                </div>
-                <div class="aparatur-info">
-                    <h4>Budi Santoso</h4>
-                    <p>Bendahara Desa</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <!-- Kontak & Aspirasi Section -->
-    <section id="kontak">
-        <div class="section-title">
-            <h3>Hubungi Kami</h3>
-        </div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h4>Kantor Desa Makmur Jaya</h4>
-                <p>Silakan hubungi kami atau kunjungi kantor pelayanan pada jam kerja (Senin - Jumat, 08.00 - 15.00 WIB).</p>
-                <br>
-                <p><strong>Alamat:</strong> Jl. Raya Suka Makmur No. 12, Kecamatan Hijau, Kabupaten Subur</p>
-                <p><strong>Telepon:</strong> (021) 1234-5678</p>
-                <p><strong>Email:</strong> info@desamakmurjaya.go.id</p>
-            </div>
-            
-            <div class="contact-form">
-                <h4>Formulir Aspirasi Warga</h4>
-                <form action="#">
-                    <div class="form-group">
-                        <label for="name">Nama Lengkap</label>
-                        <input type="text" id="name" placeholder="Nama Anda" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email / No. HP</label>
-                        <input type="text" id="email" placeholder="Kontak yang bisa dihubungi" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Pesan / Aspirasi</label>
-                        <textarea id="message" rows="4" placeholder="Tuliskan aspirasi atau pertanyaan Anda" required></textarea>
-                    </div>
-                    <button type="submit" class="form-btn">Kirim Aspirasi</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Pemerintah Desa Makmur Jaya. Hak Cipta Dilindungi Undang-Undang.</p>
+        <p>&copy; 2026 Pemerintah Desa Sungai Lurus. Desain Klasik & Elegan.</p>
     </footer>
-
-    <!-- JavaScript untuk Menjalankan Navigasi Mobile -->
-    <script>
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navList = document.getElementById('nav-list');
-
-        // Fungsi ketika tombol menu diklik
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navList.classList.toggle('active');
-        });
-
-        // Menutup menu secara otomatis ketika salah satu tautan (link) diklik
-        const navLinks = document.querySelectorAll('.nav-links a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navList.classList.remove('active');
-            });
-        });
-    </script>
 
 </body>
 </html>
