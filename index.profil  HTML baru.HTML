@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Desa Sungai Lurus</title>
+    <style>
+        :root {
+            --primary: #1b4332; /* Hijau Tua Klasik (Forest Green) */
+            --secondary: #40916c; /* Hijau Daun Elegan */
+            --accent: #d8f3dc; /* Hijau Sangat Muda */
+            --dark: #2d312e; /* Hitam Arang Klasik */
+            --bg: #f4f7f5; /* Background Lembut */
+            --gold: #b58d3d; /* Aksen Emas Klasik */
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(8, 28, 21, 0.85), rgba(27, 67, 50, 0.85)), 
+                        url('https://images.unsplash.com/photo-1508873696983-2df519f0397d?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px auto 0;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            font-style: italic;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: #ffffff;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e1e8e4;
+            overflow: hidden;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        /* --- BAGIAN BERITA --- */
+        .grid-berita {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .berita-card {
+            background: #fff;
+            border: 1px solid #e1e8e4;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+        }
+
+        .berita-img {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .berita-content {
+            padding: 20px;
+        }
+
+        .berita-date {
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .berita-content h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        /* --- BAGIAN APARATUR (TABEL) --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: #ffffff;
+        }
+
+        table th {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 15px;
+            text-align: left;
+            font-weight: normal;
+            letter-spacing: 1px;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        table td {
+            padding: 14px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9efe9;
+            font-size: 1.05rem;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #fafdfb;
+        }
+
+        .link-aparatur {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dashed var(--gold);
+            transition: all 0.2s;
+        }
+
+        .link-aparatur:hover {
+            color: var(--secondary);
+            border-bottom-style: solid;
+        }
+
+        /* --- GRID DATA KEPENDUDUKAN DENGAN FOTO --- */
+        .grid-data {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card-penduduk {
+            background: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #d8f3dc;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .card-penduduk:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(27,67,50,0.12);
+            border-color: var(--gold);
+        }
+
+        .card-thumb {
+            width: 100%;
+            height: 130px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .card-body {
+            padding: 20px 15px;
+        }
+
+        .card-body h3 {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .card-body .angka {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .card-body p {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        /* --- FITUR CARI KTP --- */
+        .search-box {
+            background: #fdfaf4;
+            border: 1px solid var(--gold);
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .search-box input {
+            padding: 10px 15px;
+            width: 60%;
+            max-width: 400px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .search-box button:hover {
+            background: #081c15;
+        }
+
+        .ktp-sample-list {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .ktp-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px dotted var(--secondary);
+        }
+
+        /* --- PETA GOOGLE MAPS --- */
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            margin-top: 15px;
+            border: 2px solid var(--gold);
+            border-radius: 4px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .btn-maps-dir {
+            display: inline-block;
+            margin-top: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .btn-maps-dir:hover {
+            background: var(--gold);
+        }
+
+        /* --- JENDELA MODAL POP-UP (ARSIP & APARATUR) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 28, 21, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 9999;
+        }
+
+        .modal-overlay:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .bio-modal-card {
+            background: #ffffff;
+            border: 2px solid var(--gold);
+            border-radius: 6px;
+            padding: 40px;
+            width: 90%;
+            max-width: 480px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: scale(0.7);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay:target .bio-modal-card,
+        .modal-overlay.active .bio-modal-card {
+            transform: scale(1);
+        }
+
+        .close-x {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: #999;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .close-x:hover {
+            color: var(--primary);
+        }
+
+        .bio-foto {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .bio-foto svg {
+            width: 60px;
+            height: 60px;
+            opacity: 0.7;
+        }
+
+        .bio-table {
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        .bio-table td {
+            font-size: 0.95rem;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: left;
+        }
+
+        .bio-table td:first-child {
+            color: #777;
+            font-style: italic;
+            width: 40%;
+        }
+
+        .btn-tutup {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-tutup:hover {
+            background-color: #081c15;
+        }
+
+        .btn-koordinat {
+            display: block;
+            background: #e6f0fa;
+            color: #1a73e8;
+            padding: 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            border: 1px solid #b3d4fc;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #081c15;
+            color: #ffffff;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            border-top: 3px solid var(--gold);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Profil Desa Sungai Lurus</h1>
+        <p>Sistem Informasi Demografi & Aparatur Pemerintahan Desa</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- 1. SECTION BERITA & PENGUMUMAN DESA -->
+        <section>
+            <h2>Berita & Pengumuman Desa</h2>
+            <div class="grid-berita">
+                <div class="berita-card">
+                    <div class="berita-img" style="background-image: url('https://images.unsplash.com/photo-1464234471565-3ae692cb8881?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="berita-content">
+                        <div class="berita-date">24 Juni 2026</div>
+                        <h3>Pembangunan Jalan Lintas Dusun Selesai Lebih Cepat</h3>
+                        <p style="font-size:0.9rem; color:#666;">Akses jalan utama penghubung Dusun I dan Dusun II kini telah selesai diaspal demi kenyamanan mobilitas warga...</p>
+                    </div>
+                </div>
+                <div class="berita-card">
+                    <div class="berita-img" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="berita-content">
+                        <div class="berita-date">18 Juni 2026</div>
+                        <h3>Jadwal Posyandu Akbar & Penyuluhan Kesehatan Anak</h3>
+                        <p style="font-size:0.9rem; color:#666;">Pemerintah desa menghimbau seluruh keluarga yang memiliki balita untuk menghadiri Posyandu rutin di Balai Desa...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SECTION STRUKTUR APARATUR PEMERINTAHAN DESA (SEKARANG TEPAT DI BAWAH BERITA) -->
+        <section>
+            <h2>Struktur Aparatur Pemerintahan Desa</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 15px; color: #555;">Klik pada nama pejabat untuk memunculkan jendela berkas riwayat jabatan resmi mereka.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jabatan Birokrasi</th>
+                        <th>Nama Pejabat Resmi</th>
+                        <th>Status Jabatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kepala Desa</strong></td>
+                        <td><a href="#bio-kades" class="link-aparatur">Ahmad Syaifuddin, S.Sos</a></td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sekretaris Desa</strong></td>
+                        <td><a href="#bio-sekdes" class="link-aparatur">Siti Rahmah</a></td>
+                        <td>Aktif</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 3. SECTION DATA KEPENDUDUKAN (DENGAN TAMBAHAN FOTO DI SETIAP KATEGORI DATA) -->
+        <section>
+            <h2>Data Kependudukan Desa</h2>
+            <div class="grid-data">
+                
+                <!-- Kartu Total Penduduk -->
+                <div class="card-penduduk">
+                    <div class="card-thumb" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="card-body">
+                        <h3>Total Penduduk</h3>
+                        <div class="angka">1.250</div>
+                        <p>Jiwa Terdaftar</p>
+                    </div>
+                </div>
+
+                <!-- Kartu Jumlah KK -->
+                <div class="card-penduduk">
+                    <div class="card-thumb" style="background-image: url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="card-body">
+                        <h3>Jumlah KK</h3>
+                        <div class="angka">350</div>
+                        <p>Kepala Keluarga</p>
+                    </div>
+                </div>
+
+                <!-- Kartu Laki-Laki -->
+                <div class="card-penduduk">
+                    <div class="card-thumb" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="card-body">
+                        <h3>Laki-Laki</h3>
+                        <div class="angka">630</div>
+                        <p>Jiwa Terdata</p>
+                    </div>
+                </div>
+
+                <!-- Kartu Perempuan -->
+                <div class="card-penduduk">
+                    <div class="card-thumb" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="card-body">
+                        <h3>Perempuan</h3>
+                        <div class="angka">620</div>
+                        <p>Jiwa Terdata</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. SECTION CARI BIODATA WARGA BERDASARKAN KTP -->
+        <section>
+            <h2>Pencarian Arsip Biodata Warga Resmi</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 15px; color: #555;">Sistem integrasi arsip sipil. Masukkan Nomor KTP/NIK warga desa untuk memanggil peta koordinat rumah dan biodata lengkap.</p>
+            
+            <div class="search-box">
+                <input type="number" id="inputKtp" placeholder="Masukkan 16 digit Nomor KTP / NIK...">
+                <button onclick="cariWarga()">Cari Data</button>
+                
+                <div class="ktp-sample-list">
+                    💡 <strong>Contoh KTP Warga (Klik untuk uji coba):</strong><br>
+                    <span class="ktp-link" onclick="setKtpUjiCoba('3201012345670001')">3201012345670001</span> (Budiarto) | 
+                    <span class="ktp-link" onclick="setKtpUjiCoba('3201018910110002')">3201018910110002</span> (Aminah)
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SECTION LOKASI DESA & PETA -->
+        <section>
+            <h2>Lokasi & Geografis Desa</h2>
+            <p style="font-size: 0.95rem; color: #555;">Berikut adalah peta batas wilayah administrasi resmi Desa Sungai Lurus yang terhubung langsung ke satelit Google Maps.</p>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.2843058864775!2d101.4428!3d-0.5112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMzAnNDAuMyJTIDEwM8KwMjYnMzQuMSJF!5e0!3m2!1sid!2sid!4v1625000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <a href="https://maps.google.com/?q=Pekanbaru,Riau" target="_blank" class="btn-maps-dir">🗺️ Buka Navigasi Langsung di Google Maps</a>
+        </section>
+
+    </div>
+
+    <!-- ================= MODAL BIODATA HASIL CARI KTP ================= -->
+    <div class="modal-overlay" id="modalWarga">
+        <div class="bio-modal-card">
+            <span class="close-x" onclick="tutupModalWarga()">&times;</span>
+            <div class="bio-foto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3 id="resNama">Nama Warga</h3>
+            <div style="font-size:0.9rem; color:var(--gold); margin-bottom:15px; font-weight:bold;">DOKUMEN SIPIL SAH</div>
+            <table class="bio-table">
+                <tr><td>NIK / KTP</td><td id="resKtp">-</td></tr>
+                <tr><td>Jenis Kelamin</td><td id="resJk">-</td></tr>
+                <tr><td>Alamat Rumah</td><td id="resAlamat">-</td></tr>
+                <tr><td>Titik Koordinat</td>
+                    <td>
+                        <strong id="resKoordinat">-</strong>
+                        <a id="resLinkMaps" href="#" target="_blank" class="btn-koordinat">📍 Lacak Lokasi Rumah (Google Maps)</a>
+                    </td>
+                </tr>
+            </table>
+            <button class="btn-tutup" onclick="tutupModalWarga()">Tutup Data</button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL APARATUR DESA ================= -->
+    <div class="modal-overlay" id="bio-kades">
+        <div class="bio-modal-card">
+            <a href="#" class="close-x">&times;</a>
+            <div class="bio-foto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Ahmad Syaifuddin, S.Sos</h3>
+            <div style="font-size:0.95rem; color:var(--gold); font-weight:bold; margin-bottom:20px;">KEPALA DESA</div>
+            <table class="bio-table">
+                <tr><td>Pendidikan Terakhir</td><td>S1 Sosiologi</td></tr>
+                <tr><td>Tanggal Lahir</td><td>12 April 1982</td></tr>
+            </table>
+            <a href="#" class="btn-tutup">Tutup</a>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="bio-sekdes">
+        <div class="bio-modal-card">
+            <a href="#" class="close-x">&times;</a>
+            <div class="bio-foto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Siti Rahmah</h3>
+            <div style="font-size:0.95rem; color:var(--gold); font-weight:bold; margin-bottom:20px;">SEKRETARIS DESA</div>
+            <table class="bio-table">
+                <tr><td>Pendidikan Terakhir</td><td>S1 Administrasi</td></tr>
+                <tr><td>Tanggal Lahir</td><td>24 Agustus 1988</td></tr>
+            </table>
+            <a href="#" class="btn-tutup">Tutup</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Pemerintah Desa Sungai Lurus. Desain Klasik & Elegan.</p>
+    </footer>
+
+    <!-- ================= ENGINE JAVASCRIPT LOCAL (MOCK DB) ================= -->
+    <script>
+        const databaseWarga = {
+            "3201012345670001": {
+                nama: "Budiarto Hadiningrat",
+                jk: "Laki-Laki",
+                alamat: "RT 02 / RW 01, Dusun I, Desa Sungai Lurus",
+                koordinat: "-0.51234, 101.44567",
+                mapsUrl: "https://www.google.com/maps/search/?api=1&query=-0.51234,101.44567"
+            },
+            "3201018910110002": {
+                nama: "Siti Aminah",
+                jk: "Perempuan",
+                alamat: "RT 05 / RW 02, Dusun II, Desa Sungai Lurus",
+                koordinat: "-0.51582, 101.44912",
+                mapsUrl: "https://www.google.com/maps/search/?api=1&query=-0.51582,101.44912"
+            }
+        };
+
+        function cariWarga() {
+            const noKtp = document.getElementById('inputKtp').value.trim();
+            const data = databaseWarga[noKtp];
+
+            if (data) {
+                document.getElementById('resNama').innerText = data.nama;
+                document.getElementById('resKtp').innerText = noKtp;
+                document.getElementById('resJk').innerText = data.jk;
+                document.getElementById('resAlamat').innerText = data.alamat;
+                document.getElementById('resKoordinat').innerText = data.koordinat;
+                document.getElementById('resLinkMaps').href = data.mapsUrl;
+                document.getElementById('modalWarga').classList.add('active');
+            } else {
+                alert("Maaf, Nomor KTP tidak terdaftar dalam arsip digital Desa Sungai Lurus.");
+            }
+        }
+
+        function setKtpUjiCoba(noKtp) {
+            document.getElementById('inputKtp').value = noKtp;
+            cariWarga();
+        }
+
+        function tutupModalWarga() {
+            document.getElementById('modalWarga').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
