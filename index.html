@@ -348,6 +348,11 @@
             border: none;
             cursor: pointer;
             font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .view-bio-btn:hover {
+            background-color: var(--primary-color);
         }
 
         /* Potensi Desa */
@@ -362,6 +367,13 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .potensi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .potensi-img {
@@ -427,6 +439,13 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .arsip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
         .arsip-media {
@@ -622,7 +641,7 @@
             border: 0;
         }
 
-        /* Modal Bio Aparatur */
+        /* Modals Global Styling */
         .modal {
             display: none;
             position: fixed;
@@ -653,6 +672,11 @@
             animation: popIn 0.3s ease;
         }
 
+        /* Khusus modal galeri agar bisa menampilkan grid gambar lebih lebar */
+        .modal-content.large {
+            max-width: 850px;
+        }
+
         @keyframes popIn {
             from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
@@ -672,6 +696,7 @@
             color: var(--dark-color);
         }
 
+        /* Bio Modal Layout */
         .modal-body {
             display: flex;
             gap: 20px;
@@ -705,6 +730,50 @@
         .modal-table td {
             padding: 6px 3px;
             font-size: 13px;
+        }
+
+        /* Grid Gambar di Dalam Modal Galeri */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            max-height: 480px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .gallery-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .gallery-grid::-webkit-scrollbar-thumb {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        .gallery-item {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .gallery-item p {
+            padding: 12px;
+            font-size: 12.5px;
+            line-height: 1.4;
+            color: var(--dark-color);
+            flex-grow: 1;
         }
 
         /* Footer */
@@ -916,30 +985,30 @@
         <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik pada kartu aparat untuk melihat biodata lengkap beserta foto.</p>
         <div class="aparatur-grid">
             <!-- Aparat 1 -->
-            <div class="aparatur-card" onclick="openBioModal('Jumain', 'Kec. Sambung Makmur, 12 Mei 1978', 'Kepala Desa', '48 Tahun', 'Islam', 'S1 Administrasi Publik', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80')">
+            <div class="aparatur-card" onclick="openBioModal('H. Ardiansyah', 'Kec. Sambung Makmur, 12 Mei 1978', 'Kepala Desa', '48 Tahun', 'Islam', 'S1 Administrasi Publik', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80')">
                 <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" alt="Kepala Desa">
-                <h4>Jumain</h4>
+                <h4>H. Ardiansyah</h4>
                 <p>Kepala Desa</p>
                 <button class="view-bio-btn">Lihat Biodata</button>
             </div>
             <!-- Aparat 2 -->
-            <div class="aparatur-card" onclick="openBioModal('Faisal Rizal', 'Kab. Banjar, 24 Agustus 1989', 'Sekretaris Desa', '37 Tahun', 'Islam', 'S1 Teknik Informatika', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80')">
+            <div class="aparatur-card" onclick="openBioModal('Ibu Siti Rahmah, S.Kom', 'Kab. Banjar, 24 Agustus 1989', 'Sekretaris Desa', '37 Tahun', 'Islam', 'S1 Teknik Informatika', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80')">
                 <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sekretaris Desa">
-                <h4>Faisal Rizal</h4>
+                <h4>Ibu Siti Rahmah, S.Kom</h4>
                 <p>Sekretaris Desa</p>
                 <button class="view-bio-btn">Lihat Biodata</button>
             </div>
             <!-- Aparat 3 -->
-            <div class="aparatur-card" onclick="openBioModal('Bpk. Guru Amat', 'Sambung Makmur, 03 Maret 1984', 'Bendahara Desa', '42 Tahun', 'Islam', 'D3 Akuntansi', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80')">
+            <div class="aparatur-card" onclick="openBioModal('Bpk. Muhammad Yusuf', 'Sambung Makmur, 03 Maret 1984', 'Bendahara Desa', '42 Tahun', 'Islam', 'D3 Akuntansi', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80')">
                 <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="Bendahara">
-                <h4>Guru Amat</h4>
+                <h4>Bpk. Muhammad Yusuf</h4>
                 <p>Bendahara Desa</p>
                 <button class="view-bio-btn">Lihat Biodata</button>
             </div>
             <!-- Aparat 4 -->
-            <div class="aparatur-card" onclick="openBioModal('Bpk. ga tau saya', 'Martapura, 15 Juli 1991', 'Kasi Pemerintahan', '35 Tahun', 'Islam', 'SMA Sederajat', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80')">
+            <div class="aparatur-card" onclick="openBioModal('Bpk. Bambang Wijaya', 'Martapura, 15 Juli 1991', 'Kasi Pemerintahan', '35 Tahun', 'Islam', 'SMA Sederajat', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80')">
                 <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Kasi Pemerintahan">
-                <h4>Bpk. ga tau saya</h4>
+                <h4>Bpk. Bambang Wijaya</h4>
                 <p>Kasi Pemerintahan</p>
                 <button class="view-bio-btn">Lihat Biodata</button>
             </div>
@@ -951,21 +1020,24 @@
         <div class="section-title">
             <h3>Potensi Desa</h3>
         </div>
+        <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik pada kartu potensi untuk melihat galeri foto dokumentasi lengkap beserta keterangan program.</p>
         <div class="potensi-container">
-            <!-- Potensi 1 -->
-            <div class="potensi-card">
+            <!-- Potensi 1 (Ketahanan Pangan) -->
+            <div class="potensi-card" onclick="openGalleryModal('ketahananPangan')">
                 <img class="potensi-img" src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80" alt="Ketahanan Pangan">
                 <div class="potensi-info">
                     <h4>Ketahanan Pangan Mandiri</h4>
                     <p>Melalui program pembibitan mandiri dan pengelolaan irigasi tersier, Desa Sungai Lurus terus mendorong kemandirian pangan khususnya di sektor pertanian padi, jagung, serta sayuran hortikultura.</p>
+                    <button class="view-bio-btn" style="margin-top: 15px;">Buka Detail Galeri</button>
                 </div>
             </div>
-            <!-- Potensi 2 -->
-            <div class="potensi-card">
+            <!-- Potensi 2 (Kerajinan PKK) -->
+            <div class="potensi-card" onclick="openGalleryModal('kerajinanUMKM')">
                 <img class="potensi-img" src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80" alt="Kerajinan PKK">
                 <div class="potensi-info">
                     <h4>Kerajinan UMKM dari Ibu PKK</h4>
                     <p>Mengoptimalkan bahan serat alam sekitar, kelompok Pemberdayaan Kesejahteraan Keluarga (PKK) memproduksi aneka tas anyaman unik, taplak meja, serta suvenir bernilai ekonomis tinggi.</p>
+                    <button class="view-bio-btn" style="margin-top: 15px;">Buka Detail Galeri</button>
                 </div>
             </div>
         </div>
@@ -984,23 +1056,24 @@
             </div>
             <div class="sejarah-media">
                 <div class="video-container">
-                    <!-- Simulasi/Iframe video profile desa -->
                     <iframe src="https://www.youtube.com/embed/5qy1Xv_xW6g" title="Profil Desa" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
 
-        <h4 style="color: var(--primary-color); margin-top: 40px; margin-bottom: 20px; text-align: center;">Dokumen & Arsip Desa</h4>
+        <h4 style="color: var(--primary-color); margin-top: 40px; margin-bottom: 10px; text-align: center;">Dokumen & Arsip Desa</h4>
+        <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik salah satu dokumen di bawah ini untuk membuka lembar arsip dokumentasi lebih lengkap.</p>
         <div class="arsip-grid">
-            <div class="arsip-card">
+            <!-- Pemicu Modal Galeri Arsip -->
+            <div class="arsip-card" onclick="openGalleryModal('dokumenArsip')">
                 <img class="arsip-media" src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=400&q=80" alt="Arsip Musyawarah">
                 <div class="arsip-desc">Dokumentasi Musrenbangdes 2025</div>
             </div>
-            <div class="arsip-card">
+            <div class="arsip-card" onclick="openGalleryModal('dokumenArsip')">
                 <img class="arsip-media" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=400&q=80" alt="Peta Desa">
                 <div class="arsip-desc">Dokumentasi Batas Administrasi Desa</div>
             </div>
-            <div class="arsip-card">
+            <div class="arsip-card" onclick="openGalleryModal('dokumenArsip')">
                 <img class="arsip-media" src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=80" alt="Arsip Sosialisasi">
                 <div class="arsip-desc">Dokumentasi Sosialisasi Kesehatan PKK</div>
             </div>
@@ -1116,7 +1189,6 @@
             <h4 style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">Lokasi Geografis Desa</h4>
             <p style="text-align: center; color: var(--gray-text); margin-bottom: 20px; font-size: 14px;">Desa Sungai Lurus terintegrasi langsung dengan sistem navigasi Google Maps. Peta interaktif di bawah dapat digeser dan diperbesar.</p>
             <div class="map-wrapper">
-                <!-- Iframe Google Maps terarah ke Sungai Lurus, Kec. Sambung Makmur, Banjar, Kalsel -->
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15933.20875416041!2d114.992683!3d-3.27546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dee254c7d013775%3A0xe549eb936bb483f9!2sSungai%20Lurus%2C%20Sambung%20Makmur%2C%20Banjar%20Regency%2C%20South%20Kalimantan!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
@@ -1127,7 +1199,7 @@
         <p>&copy; 2026 Pemerintah Desa Sungai Lurus. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
     </footer>
 
-    <!-- Modal Biodata Aparatur -->
+    <!-- Modal 1: Biodata Aparatur -->
     <div id="bioModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeBioModal()">&times;</span>
@@ -1165,6 +1237,20 @@
         </div>
     </div>
 
+    <!-- Modal 2: Galeri Multi-Foto Potensi & Arsip (Large Modal) -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content large">
+            <span class="close-btn" onclick="closeGalleryModal()">&times;</span>
+            <h3 id="gallery-modal-title" style="color: var(--primary-color); margin-bottom: 5px; text-transform: uppercase;"></h3>
+            <p id="gallery-modal-desc" style="font-size: 13.5px; color: var(--gray-text); margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;"></p>
+            
+            <!-- Tempat menampilkan koleksi gambar dinamis -->
+            <div class="gallery-grid" id="gallery-grid-container">
+                <!-- Data dimasukkan via JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Internal -->
     <script>
         // Logika Responsif Hamburger Menu
@@ -1175,7 +1261,6 @@
             mobileMenuBtn.classList.toggle('active');
             navLinksList.classList.toggle('active');
             
-            // Animasi bar menjadi tombol silang (X)
             if(mobileMenuBtn.classList.contains('active')) {
                 mobileMenuBtn.children[0].style.transform = 'translateY(9px) rotate(45deg)';
                 mobileMenuBtn.children[1].style.opacity = '0';
@@ -1187,7 +1272,6 @@
             }
         });
 
-        // Menutup menu drop-down ketika salah satu tautan menu diklik
         const navLinks = document.querySelectorAll('.nav-links a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -1199,7 +1283,7 @@
             });
         });
 
-        // Logika Pengisian dan Pembukaan Modal Biodata Aparatur
+        // Logika Modal Biodata Aparatur
         const bioModal = document.getElementById('bioModal');
         
         function openBioModal(nama, ttl, jabatan, umur, agama, pendidikan, fotoUrl) {
@@ -1218,10 +1302,107 @@
             bioModal.classList.remove('show');
         }
 
-        // Tutup modal secara otomatis jika pengguna mengeklik area di luar kotak modal
+        // --- Logika Baru: Galeri Multi-Foto Dinamis ---
+        const galleryModal = document.getElementById('galleryModal');
+        const galleryGridContainer = document.getElementById('gallery-grid-container');
+        const galleryModalTitle = document.getElementById('gallery-modal-title');
+        const galleryModalDesc = document.getElementById('gallery-modal-desc');
+
+        // Database data gambar dan keterangan
+        const dataGaleri = {
+            ketahananPangan: {
+                title: "Ketahanan Pangan Mandiri",
+                desc: "Rangkaian program dan kegiatan pemberdayaan pertanian guna mewujudkan swasembada pangan di lingkungan Desa Sungai Lurus.",
+                items: [
+                    {
+                        img: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Sawah Padi Unggul:</strong> Area persawahan produktif yang dikelola oleh kelompok tani dengan menggunakan bibit bersertifikat hasil panen melimpah."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Kebun Sayur Hidroponik:</strong> Program pemanfaatan pekarangan rumah tangga terpadu untuk penyediaan sayuran segar bebas bahan kimia berbahaya."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Kolam Budidaya Ikan:</strong> Penyediaan sumber protein hewani warga melalui pengelolaan kolam ikan nila dan emas secara swadaya."
+                    }
+                ]
+            },
+            kerajinanUMKM: {
+                title: "Kerajinan UMKM dari Ibu PKK",
+                desc: "Kreativitas kelompok wanita tani dan kader PKK dalam mengolah potensi alam menjadi produk bernilai ekonomi tinggi.",
+                items: [
+                    {
+                        img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Anyaman Serat Purun:</strong> Produk tas belanja, wadah serbaguna, dan topi anyaman ramah lingkungan buatan tangan ibu-ibu PKK."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Olahan Keripik Pisang Khas:</strong> Pembuatan jajanan keripik pisang renyah dalam berbagai varian rasa hasil produksi dapur rumah tangga PKK."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Keterampilan Sulam Kain Sasirangan:</strong> Kegiatan pelatihan pembuatan motif kain sasirangan bernuansa etnik khas Kalimantan Selatan."
+                    }
+                ]
+            },
+            dokumenArsip: {
+                title: "Dokumen & Arsip Resmi Desa",
+                desc: "Penyimpanan visual, dokumentasi musyawarah, serta berkas administrasi batas pemetaan wilayah Desa Sungai Lurus.",
+                items: [
+                    {
+                        img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Musyawarah RKPDesa 2025:</strong> Proses pengambilan keputusan partisipatif bersama seluruh unsur masyarakat desa dalam merancang APBDesa."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Pemetaan Batas Wilayah:</strong> Berkas verifikasi batas koordinat geografis administrasi yang dikoordinasikan secara tertulis."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Sosialisasi Administrasi & Program PKK:</strong> Arsip publikasi alokasi program kerja kader PKK sepanjang tahun berjalan."
+                    }
+                ]
+            }
+        };
+
+        function openGalleryModal(kunciKategori) {
+            const kategori = dataGaleri[kunciKategori];
+            if (!kategori) return;
+
+            // Masukkan judul & keterangan umum kategori
+            galleryModalTitle.innerText = kategori.title;
+            galleryModalDesc.innerText = kategori.desc;
+
+            // Kosongkan kontainer lama
+            galleryGridContainer.innerHTML = '';
+
+            // Buat elemen gambar dan teks keterangan secara dinamis
+            kategori.items.forEach(item => {
+                const itemCard = document.createElement('div');
+                itemCard.className = 'gallery-item';
+
+                itemCard.innerHTML = `
+                    <img src="${item.img}" alt="Foto Dokumentasi">
+                    <p>${item.caption}</p>
+                `;
+                galleryGridContainer.appendChild(itemCard);
+            });
+
+            // Tampilkan modal galeri
+            galleryModal.classList.add('show');
+        }
+
+        function closeGalleryModal() {
+            galleryModal.classList.remove('show');
+        }
+
+        // Menutup modal jika area di luar kotak modal diklik
         window.onclick = function(event) {
             if (event.target == bioModal) {
                 closeBioModal();
+            } else if (event.target == galleryModal) {
+                closeGalleryModal();
             }
         }
     </script>
