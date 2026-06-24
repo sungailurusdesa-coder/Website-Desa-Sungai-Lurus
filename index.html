@@ -35,7 +35,128 @@
             background-color: var(--light-color);
         }
 
-        /* Header & Navigasi */
+        /* Mengunci scroll body saat landing page masih aktif */
+        body.landing-active {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* STYLE LAYAR PEMBUKA (LANDING PAGE) */
+        .landing-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9999;
+            color: var(--white);
+            padding: 40px 20px;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+            text-align: center;
+        }
+
+        /* Transisi keluar saat tombol Kunjungi diklik (geser ke atas) */
+        .landing-screen.fade-out {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .landing-logo {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .landing-main-content {
+            max-width: 700px;
+            margin-bottom: 50px;
+        }
+
+        .landing-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .landing-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--white);
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .landing-tagline {
+            font-size: 15px;
+            font-weight: 400;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .landing-btn {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        .landing-btn:hover {
+            background-color: #b45309;
+            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .landing-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Media Sosial & Kontak di Bagian Bawah */
+        .landing-social-footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 800px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 25px;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .social-item:hover {
+            color: var(--accent-color);
+        }
+
+        .social-item span {
+            font-size: 16px;
+        }
+
+        /* Header & Navigasi Utama */
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -825,9 +946,34 @@
         }
     </style>
 </head>
-<body>
+<body class="landing-active"> <!-- Kelas 'landing-active' mengunci gulir layar mula-mula -->
 
-    <!-- Header & Navigasi -->
+    <!-- HALAMAN PEMBUKA (LANDING SCREEN) -->
+    <div class="landing-screen" id="landing-page">
+        <div class="landing-logo">Pemerintah Kabupaten Banjar</div>
+        
+        <div class="landing-main-content">
+            <p class="landing-subtitle">Selamat Datang di Website Resmi</p>
+            <h1 class="landing-title">Desa Sungai Lurus</h1>
+            <p class="landing-tagline">Kecamatan Sambung Makmur, Kabupaten Banjar, Provinsi Kalimantan Selatan</p>
+            <button class="landing-btn" onclick="enterSite()">Kunjungi Website</button>
+        </div>
+
+        <!-- Media Sosial & Kontak Desa -->
+        <div class="landing-social-footer">
+            <a href="https://instagram.com/desasungailurus" target="_blank" class="social-item">
+                <span>📷</span> Instagram Desa
+            </a>
+            <a href="https://tiktok.com/@desasungailurus" target="_blank" class="social-item">
+                <span>🎵</span> TikTok Desa
+            </a>
+            <a href="tel:+6281234567890" class="social-item">
+                <span>📞</span> Hubungi Kami: 0812-3456-7890
+            </a>
+        </div>
+    </div>
+
+    <!-- Header & Navigasi Utama -->
     <header>
         <div class="navbar">
             <div class="logo">
@@ -1244,7 +1390,6 @@
             <h3 id="gallery-modal-title" style="color: var(--primary-color); margin-bottom: 5px; text-transform: uppercase;"></h3>
             <p id="gallery-modal-desc" style="font-size: 13.5px; color: var(--gray-text); margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;"></p>
             
-            <!-- Tempat menampilkan koleksi gambar dinamis -->
             <div class="gallery-grid" id="gallery-grid-container">
                 <!-- Data dimasukkan via JavaScript -->
             </div>
@@ -1253,6 +1398,22 @@
 
     <!-- JavaScript Internal -->
     <script>
+        // Logika Perpindahan dari Halaman Pembuka ke Website Utama
+        function enterSite() {
+            const landingPage = document.getElementById('landing-page');
+            
+            // Tambahkan kelas fade-out untuk mengaktifkan animasi pergeseran ke atas
+            landingPage.classList.add('fade-out');
+            
+            // Hapus pengunci gulir (scroll) pada body
+            document.body.classList.remove('landing-active');
+            
+            // Sembunyikan elemen halaman pembuka sepenuhnya setelah transisi selesai (800ms)
+            setTimeout(() => {
+                landingPage.style.display = 'none';
+            }, 800);
+        }
+
         // Logika Responsif Hamburger Menu
         const mobileMenuBtn = document.getElementById('mobile-menu');
         const navLinksList = document.getElementById('nav-list');
@@ -1302,13 +1463,12 @@
             bioModal.classList.remove('show');
         }
 
-        // --- Logika Baru: Galeri Multi-Foto Dinamis ---
+        // Logika Galeri Multi-Foto Dinamis
         const galleryModal = document.getElementById('galleryModal');
         const galleryGridContainer = document.getElementById('gallery-grid-container');
         const galleryModalTitle = document.getElementById('gallery-modal-title');
         const galleryModalDesc = document.getElementById('gallery-modal-desc');
 
-        // Database data gambar dan keterangan
         const dataGaleri = {
             ketahananPangan: {
                 title: "Ketahanan Pangan Mandiri",
@@ -1370,18 +1530,13 @@
             const kategori = dataGaleri[kunciKategori];
             if (!kategori) return;
 
-            // Masukkan judul & keterangan umum kategori
             galleryModalTitle.innerText = kategori.title;
             galleryModalDesc.innerText = kategori.desc;
-
-            // Kosongkan kontainer lama
             galleryGridContainer.innerHTML = '';
 
-            // Buat elemen gambar dan teks keterangan secara dinamis
             kategori.items.forEach(item => {
                 const itemCard = document.createElement('div');
                 itemCard.className = 'gallery-item';
-
                 itemCard.innerHTML = `
                     <img src="${item.img}" alt="Foto Dokumentasi">
                     <p>${item.caption}</p>
@@ -1389,7 +1544,6 @@
                 galleryGridContainer.appendChild(itemCard);
             });
 
-            // Tampilkan modal galeri
             galleryModal.classList.add('show');
         }
 
