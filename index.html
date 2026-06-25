@@ -244,6 +244,11 @@
             flex-direction: column;
             gap: 0;
             animation: fadeIn 0.25s ease;
+            
+            /* PERBAIKAN: Mengaktifkan scroll pada menu navigasi jika terlalu panjang */
+            max-height: 75vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         @keyframes fadeIn {
@@ -998,7 +1003,7 @@
                     <li><a href="#beranda" onclick="goBackToMain(); closeDropdown()">Beranda</a></li>
                     <li><a href="#profil" onclick="goBackToMain(); closeDropdown()">Profil</a></li>
                     
-                    <!-- MENU BARU: BPD, RT, & BUMDES (Diurutkan secara teratur di dropdown) -->
+                    <!-- MENU BPD, RT, & BUMDES -->
                     <li><a href="#" onclick="showBPDView(); closeDropdown()" style="color: var(--accent-color); font-weight: 700;">📁 Menu BPD</a></li>
                     
                     <li style="padding: 6px 20px; font-size: 11px; font-weight: bold; color: var(--gray-text); background-color: #f0f0f0;">FOLDER RT</li>
@@ -1047,7 +1052,7 @@
         </div>
     </section>
 
-    <!-- Berita & Pengumuman Section (Horizontal Scroll/Sliding) -->
+    <!-- Berita & Pengumuman Section (Horizontal Slider) -->
     <section id="berita" style="background-color: #f9fbf9;">
         <div class="section-title">
             <h3>Berita & Pengumuman</h3>
@@ -1152,7 +1157,7 @@
         <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik pada kartu aparat untuk melihat biodata lengkap beserta foto.</p>
         <div class="aparatur-grid">
             <!-- Aparat 1 -->
-            <div class="aparatur-card" onclick="openBioModal('Jumain ', 'Kec. Sambung Makmur, 12 Mei 1978', 'Kepala Desa', '48 Tahun', 'Islam', 'S1 Administrasi Publik', 'BAPAK KADES.jpg')">
+            <div class="aparatur-card" onclick="openBioModal('Jumain ', 'Kec. Sambung Makmur, 12 Mei 1978', 'Kepala Desa', '48 Tahun', 'Islam', 'S1 Administrator Publik', 'BAPAK KADES.jpg')">
                 <img class="aparatur-avatar" src="BAPAK KADES.jpg" alt="Kepala Desa">
                 <h4>Jumain</h4>
                 <p>Kepala Desa</p>
@@ -1446,7 +1451,8 @@
             <!-- Foto & Detail Ketua RT di Bagian Atas -->
             <img id="rt-photo-img" src="" alt="Ketua RT" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid var(--secondary-color); margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
             <h4 id="rt-chief-name" style="font-size: 22px; color: var(--primary-color); margin-bottom: 5px;">Nama Ketua RT</h4>
-            <p id="rt-sub-title" style="color: var(--accent-color); font-weight: 700; margin-bottom: 20px; font-size: 14px; text-transform: uppercase;">Ketua RT</p>
+            <!-- PERBAIKAN: Menambahkan elemen span id="rt-num" agar JS tidak crash saat mencari element ini -->
+            <p id="rt-sub-title" style="color: var(--accent-color); font-weight: 700; margin-bottom: 20px; font-size: 14px; text-transform: uppercase;">Ketua RT <span id="rt-num"></span></p>
             
             <!-- Jumlah Penduduk -->
             <div style="background-color: var(--light-color); padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid var(--secondary-color);">
@@ -1489,7 +1495,7 @@
                 
                 <p style="font-weight: 600; font-size: 15px; color: var(--secondary-color); margin-bottom: 5px;">Misi:</p>
                 <ul style="padding-left: 20px; color: var(--dark-color); display: flex; flex-direction: column; gap: 8px; font-size: 14px;">
-                    <li>Mengoptimalkan potensi sumber daya lokal untuk kesejahteraan masyarakat desa.</li>
+                    <li>Mengelola potensi sumber daya lokal untuk kesejahteraan masyarakat desa.</li>
                     <li>Membangun kemitraan produktif dengan pelaku UMKM serta kelompok usaha tani.</li>
                     <li>Memberikan kontribusi nyata dalam penyerapan Pendapatan Asli Desa (PADes).</li>
                 </ul>
@@ -1987,7 +1993,7 @@
                 photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80",
                 population: "896 Jiwa (260 Kepala Keluarga)",
                 programs: [
-                    "<strong>Kebun Hidroponik Mandiri:</strong> Pembudidayaan sayur pangan di gang sempit RT 03.",
+                    "<strong>Program Kebun Gizi:</strong> Penanaman sayur pangan di gang sempit RT 03.",
                     "<strong>Arisan Sosial:</strong> Pengumpulan kas sosial santunan kedukaan warga.",
                     "<strong>Kerja Bakti Sanitasi:</strong> Fogging rutin pencegah timbulnya sarang DBD."
                 ],
@@ -2003,7 +2009,7 @@
             document.getElementById('rt-title-heading').innerText = data.title;
             document.getElementById('rt-chief-name').innerText = data.chief;
             document.getElementById('rt-photo-img').src = data.photo;
-            document.getElementById('rt-num').innerText = num;
+            document.getElementById('rt-num').innerText = "0" + num;
             document.getElementById('rt-population-val').innerText = data.population;
 
             const list = document.getElementById('rt-programs-list');
