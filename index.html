@@ -189,43 +189,89 @@
             letter-spacing: 1px;
         }
 
-        .nav-links {
-            list-style: none;
+        /* Wrapper Satu Navigasi (Dropdown) */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
             display: flex;
-            gap: 15px;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-family: inherit;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .nav-btn .arrow {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Isi Link Navigasi */
+        .nav-links {
+            display: none; /* Tersembunyi secara bawaan */
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 10px;
+            background-color: var(--white);
+            min-width: 230px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            list-style: none;
+            z-index: 1001;
+            flex-direction: column;
+            gap: 0;
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-links.show {
+            display: flex;
+        }
+
+        .nav-links li {
+            width: 100%;
         }
 
         .nav-links a {
-            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
             color: var(--dark-color);
             font-weight: 500;
             font-size: 14px;
-            transition: color 0.3s ease;
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+            text-align: left;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
+            background-color: #f4f7f6;
             color: var(--secondary-color);
-        }
-
-        /* Hamburger Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle .bar {
-            height: 3px;
-            width: 100%;
-            background-color: var(--primary-color);
-            border-radius: 10px;
-            transition: all 0.3s ease;
         }
 
         /* Hero Section */
@@ -914,28 +960,6 @@
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 75px;
-                left: 0;
-                width: 100%;
-                background-color: var(--white);
-                padding: 20px;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-                gap: 15px;
-                text-align: center;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
             .hero h2 {
                 font-size: 30px;
             }
@@ -981,24 +1005,24 @@
                 <p>Kec. Sambung Makmur, Kab. Banjar</p>
             </div>
             
-            <button class="menu-toggle" id="mobile-menu" aria-label="Buka Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-
-            <ul class="nav-links" id="nav-list">
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#berita">Berita</a></li>
-                <li><a href="#statistik">Statistik</a></li>
-                <li><a href="#aparatur">Aparatur</a></li>
-                <li><a href="#potensi">Potensi</a></li>
-                <li><a href="#sejarah-arsip">Sejarah & Arsip</a></li>
-                <li><a href="#prestasi">Prestasi</a></li>
-                <li><a href="#layanan">Layanan</a></li>
-                <li><a href="#aspirasi-lokasi">Aspirasi & Lokasi</a></li>
-            </ul>
+            <!-- Satu Navigasi Utama (Dropdown) -->
+            <div class="nav-dropdown">
+                <button class="nav-btn" id="menu-btn" aria-haspopup="true" aria-expanded="false">
+                    Menu Navigasi <span class="arrow">▼</span>
+                </button>
+                <ul class="nav-links" id="nav-list">
+                    <li><a href="#beranda" onclick="closeDropdown()">Beranda</a></li>
+                    <li><a href="#profil" onclick="closeDropdown()">Profil</a></li>
+                    <li><a href="#berita" onclick="closeDropdown()">Berita</a></li>
+                    <li><a href="#statistik" onclick="closeDropdown()">Statistik</a></li>
+                    <li><a href="#aparatur" onclick="closeDropdown()">Aparatur</a></li>
+                    <li><a href="#potensi" onclick="closeDropdown()">Potensi</a></li>
+                    <li><a href="#sejarah-arsip" onclick="closeDropdown()">Sejarah & Arsip</a></li>
+                    <li><a href="#prestasi" onclick="closeDropdown()">Prestasi</a></li>
+                    <li><a href="#layanan" onclick="closeDropdown()">Layanan</a></li>
+                    <li><a href="#aspirasi-lokasi" onclick="closeDropdown()">Aspirasi & Lokasi</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
@@ -1435,35 +1459,22 @@
             }, 800);
         }
 
-        // Logika Responsif Hamburger Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu');
-        const navLinksList = document.getElementById('nav-list');
+        // Logika Satu Navigasi Utama (Dropdown Menu)
+        const menuBtn = document.getElementById('menu-btn');
+        const navList = document.getElementById('nav-list');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navLinksList.classList.toggle('active');
-            
-            if(mobileMenuBtn.classList.contains('active')) {
-                mobileMenuBtn.children[0].style.transform = 'translateY(9px) rotate(45deg)';
-                mobileMenuBtn.children[1].style.opacity = '0';
-                mobileMenuBtn.children[2].style.transform = 'translateY(-9px) rotate(-45deg)';
-            } else {
-                mobileMenuBtn.children[0].style.transform = 'none';
-                mobileMenuBtn.children[1].style.opacity = '1';
-                mobileMenuBtn.children[2].style.transform = 'none';
-            }
+        // Toggle visibilitas dropdown saat tombol ditekan
+        menuBtn.addEventListener('click', (event) => {
+            event.stopPropagation(); // Mencegah penutupan instan dari event window click
+            navList.classList.toggle('show');
+            menuBtn.classList.toggle('active');
         });
 
-        const navLinks = document.querySelectorAll('.nav-links a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                navLinksList.classList.remove('active');
-                mobileMenuBtn.children[0].style.transform = 'none';
-                mobileMenuBtn.children[1].style.opacity = '1';
-                mobileMenuBtn.children[2].style.transform = 'none';
-            });
-        });
+        // Menutup dropdown menu setelah link navigasi ditekan
+        function closeDropdown() {
+            navList.classList.remove('show');
+            menuBtn.classList.remove('active');
+        }
 
         // Logika Modal Biodata Aparatur
         const bioModal = document.getElementById('bioModal');
@@ -1572,8 +1583,11 @@
             galleryModal.classList.remove('show');
         }
 
-        // Menutup modal jika area di luar kotak modal diklik
+        // Menutup dropdown menu atau modal jika area luar diklik
         window.onclick = function(event) {
+            if (!menuBtn.contains(event.target) && !navList.contains(event.target)) {
+                closeDropdown();
+            }
             if (event.target == bioModal) {
                 closeBioModal();
             } else if (event.target == galleryModal) {
