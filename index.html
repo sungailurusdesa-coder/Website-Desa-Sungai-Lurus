@@ -741,31 +741,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 14px;
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-        }
-
         .submit-btn {
             background-color: var(--primary-color);
             color: var(--white);
@@ -1349,30 +1324,15 @@
             <h3>Hubungi Kami & Lokasi</h3>
         </div>
         
-        <div class="aspirasi-container" style="margin-bottom: 40px;">
-            <h4 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Kotak Aspirasi & Pengaduan Warga</h4>
-            <form action="#">
-                <div class="form-group">
-                    <label for="warga-nama">Nama Lengkap</label>
-                    <input type="text" id="warga-nama" placeholder="Isi nama Anda" required>
-                </div>
-                <div class="form-group">
-                    <label for="warga-kontak">Nomor HP / WhatsApp</label>
-                    <input type="text" id="warga-kontak" placeholder="Contoh: 0812xxxxxxxx" required>
-                </div>
-                <div class="form-group">
-                    <label for="layanan-tipe">Kategori</label>
-                    <select id="layanan-tipe">
-                        <option value="aspirasi">Penyampaian Aspirasi</option>
-                        <option value="pengaduan">Pengaduan Layanan / Masalah</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="warga-pesan">Uraian Pesan</label>
-                    <textarea id="warga-pesan" rows="5" placeholder="Tuliskan pesan atau pengaduan secara lengkap" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Kirim Sekarang</button>
-            </form>
+        <!-- https://forms.gle/WGbf4TPasTh6UViE7 -->
+        <div class="aspirasi-container" style="margin-bottom: 40px; text-align: center;">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px;">Kotak Aspirasi & Pengaduan Warga</h4>
+            <p style="color: var(--gray-text); font-size: 14px; margin-bottom: 25px; line-height: 1.6;">
+                Guna mempermudah penampungan saran, aspirasi, serta laporan dari masyarakat secara cepat dan transparan, silakan klik tombol di bawah ini untuk mengisi formulir melalui Google Form resmi Desa Sungai Lurus.
+            </p>
+            <a href="https://forms.gle/ContohLinkGoogleFormDesa" target="_blank" class="submit-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; padding: 15px 30px; font-size: 15px; border-radius: 30px; max-width: 350px; margin: 0 auto; box-shadow: 0 4px 15px rgba(27, 67, 50, 0.2);">
+                <span>📝</span> Buka Google Form Aspirasi
+            </a>
         </div>
 
         <!-- Lokasi & Geografis Desa -->
