@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Resmi Desa Sungai Lurus</title>
-    <!-- Font Poppins dari Google Fonts -->
+    <!-- Menggunakan Font Poppins dari Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- SheetJS CDN untuk Membaca File Excel secara Otomatis -->
+    <!-- Pustaka SheetJS CDN untuk Membaca File Excel secara Otomatis -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
         /* Variabel Warna & Reset CSS */
@@ -50,7 +50,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)), url(' PRESTASI.jpg ') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)), url(' PRESTASI.jpg ') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -62,32 +62,14 @@
             text-align: center;
         }
 
+        /* Transisi keluar saat tombol Kunjungi diklik (geser ke atas) */
         .landing-screen.fade-out {
             transform: translateY(-100%);
             opacity: 0;
         }
 
-        .landing-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-
-        .landing-logo-img {
-            height: 85px;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .landing-logo-img:hover {
-            transform: scale(1.1);
-        }
-
-        .landing-logo-text {
-            font-size: 15px;
+        .landing-logo {
+            font-size: 14px;
             font-weight: 600;
             letter-spacing: 2px;
             color: var(--accent-color);
@@ -96,7 +78,7 @@
 
         .landing-main-content {
             max-width: 700px;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
         }
 
         .landing-subtitle {
@@ -141,6 +123,11 @@
             transform: translateY(-2px);
         }
 
+        .landing-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Media Sosial & Kontak di Bagian Bawah */
         .landing-social-footer {
             display: flex;
             flex-wrap: wrap;
@@ -167,7 +154,11 @@
             color: var(--accent-color);
         }
 
-        /* Header & Navigasi */
+        .social-item span {
+            font-size: 16px;
+        }
+
+        /* Header & Navigasi Utama */
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -200,6 +191,7 @@
             letter-spacing: 1px;
         }
 
+        /* Wrapper Satu Navigasi (Dropdown) */
         .nav-dropdown {
             position: relative;
             display: inline-block;
@@ -235,14 +227,15 @@
             transform: rotate(180deg);
         }
 
+        /* Isi Link Navigasi */
         .nav-links {
-            display: none;
+            display: none; /* Tersembunyi secara bawaan */
             position: absolute;
             right: 0;
             top: 100%;
             margin-top: 10px;
             background-color: var(--white);
-            min-width: 250px;
+            min-width: 230px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             border-radius: 12px;
             padding: 10px 0;
@@ -250,8 +243,6 @@
             z-index: 1001;
             flex-direction: column;
             gap: 0;
-            max-height: 450px;
-            overflow-y: auto;
             animation: fadeIn 0.25s ease;
         }
 
@@ -283,17 +274,6 @@
         .nav-links a:hover {
             background-color: #f4f7f6;
             color: var(--secondary-color);
-        }
-
-        .menu-rt-header {
-            background-color: #f4f7f6;
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: bold;
-            color: var(--gray-text);
-            padding: 8px 20px;
-            border-top: 1px solid #eaeaea;
-            border-bottom: 1px solid #eaeaea;
         }
 
         /* Hero Section */
@@ -379,7 +359,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Berita Section */
+        /* Berita Section (Horizontal Slider) */
         .news-slider-wrapper {
             position: relative;
             overflow: hidden;
@@ -453,7 +433,7 @@
             margin-bottom: 15px;
         }
 
-        /* Statistik */
+        /* Statistik / Demografi */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -581,7 +561,7 @@
             margin-bottom: 10px;
         }
 
-        /* Sejarah, Dokumen & Video */
+        /* Sejarah, Dokumen & Prestasi */
         .sejarah-video-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -651,7 +631,7 @@
             color: var(--primary-color);
         }
 
-        /* Prestasi */
+        /* Prestasi PKK & Lainnya */
         .prestasi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -682,7 +662,7 @@
             color: var(--accent-color);
         }
 
-        /* Layanan Desa */
+        /* Layanan Desa (Rencana & Bukti Kegiatan) */
         .layanan-split {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -723,7 +703,7 @@
             color: var(--gray-text);
         }
 
-        /* Bukti Kegiatan */
+        /* Bukti Kegiatan Card */
         .bukti-card {
             background-color: var(--white);
             border-radius: 8px;
@@ -748,6 +728,11 @@
             margin-bottom: 5px;
         }
 
+        .bukti-text p {
+            font-size: 12px;
+            color: var(--gray-text);
+        }
+
         /* Aspirasi & Pengaduan */
         .aspirasi-container {
             max-width: 700px;
@@ -767,7 +752,6 @@
             cursor: pointer;
             font-weight: 600;
             width: 100%;
-            text-align: center;
             transition: background 0.3s;
         }
 
@@ -775,7 +759,7 @@
             background-color: var(--secondary-color);
         }
 
-        /* Lokasi & Google Maps */
+        /* Lokasi & Geografis (Google Maps) */
         .map-section {
             background-color: var(--white);
             padding: 40px 20px;
@@ -785,7 +769,7 @@
 
         .map-wrapper {
             position: relative;
-            padding-bottom: 45%;
+            padding-bottom: 45%; /* Aspek rasio peta */
             height: 0;
             overflow: hidden;
             border-radius: 8px;
@@ -832,6 +816,7 @@
             animation: popIn 0.3s ease;
         }
 
+        /* Khusus modal galeri agar bisa menampilkan grid gambar lebih lebar */
         .modal-content.large {
             max-width: 850px;
         }
@@ -935,103 +920,6 @@
             flex-grow: 1;
         }
 
-        .folder-badge {
-            background: var(--accent-color);
-            color: var(--white);
-            padding: 8px 12px;
-            font-size: 11px;
-            font-weight: 700;
-            border-radius: 4px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        /* Menu Navigasi BUMDes & Menu Buttons */
-        .sub-menu-btn {
-            background-color: var(--white);
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 15px 25px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .sub-menu-btn:hover {
-            background-color: var(--primary-color);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .bumdes-grid-menu {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-            margin-bottom: 40px;
-        }
-
-        /* Drag and Drop Excel Upload */
-        .excel-dropzone {
-            border: 2px dashed var(--secondary-color);
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            background-color: #f9fbf9;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            margin-bottom: 25px;
-        }
-
-        .excel-dropzone:hover {
-            background-color: #f1f7f4;
-        }
-
-        .financial-card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .financial-val-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            border-top: 5px solid var(--secondary-color);
-            text-align: center;
-        }
-
-        .financial-val-card.masuk {
-            border-top-color: var(--secondary-color);
-        }
-
-        .financial-val-card.keluar {
-            border-top-color: var(--accent-color);
-        }
-
-        .financial-val-card h5 {
-            font-size: 14px;
-            color: var(--gray-text);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .financial-val-card p {
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--dark-color);
-        }
-
         /* Footer */
         footer {
             background-color: var(--primary-color);
@@ -1059,16 +947,18 @@
         }
     </style>
 </head>
-<body class="landing-active">
+<body class="landing-active"> <!-- Kelas 'landing-active' mengunci gulir layar mula-mula -->
 
     <!-- HALAMAN PEMBUKA (LANDING SCREEN) -->
     <div class="landing-screen" id="landing-page">
-        <!-- 2 Logo Bersebelahan (Dapat diklik untuk masuk) -->
-        <div class="landing-logos" onclick="enterSite()">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Coats_of_arms_of_Banjar_Regency.svg" alt="Logo Kabupaten Banjar" class="landing-logo-img">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Logo_of_the_Ministry_of_Villages%2C_Disadvantage_Region_Developments%2C_and_Transmigrations_of_the_Republic_of_Indonesia.svg" alt="Logo Kemendesa" class="landing-logo-img">
+        <!-- MODIFIKASI: Menambahkan 2 Logo Desa Bersebelahan tanpa merusak tag aslinya -->
+        <div class="LOGO_DESAA.jpg" style="display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: pointer;" onclick="enterSite()">
+            <div style="display: flex; gap: 15px; justify-content: center; align-items: center; margin-bottom: 10px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Coats_of_arms_of_Banjar_Regency.svg" alt="Kabupaten Banjar" style="height: 75px; object-fit: contain;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Logo_of_the_Ministry_of_Villages%2C_Disadvantage_Region_Developments%2C_and_Transmigrations_of_the_Republic_of_Indonesia.svg" alt="Kemendesa" style="height: 75px; object-fit: contain;">
+            </div>
+            Pemerintah Desa Sungai Lurus 
         </div>
-        <div class="landing-logo-text">Pemerintah Desa Sungai Lurus</div>
         
         <div class="landing-main-content">
             <p class="landing-subtitle">Selamat Datang di Website Resmi</p>
@@ -1077,6 +967,7 @@
             <button class="landing-btn" onclick="enterSite()">Kunjungi Website</button>
         </div>
 
+        <!-- Media Sosial & Kontak Desa -->
         <div class="landing-social-footer">
             <a href="https://instagram.com/desasungailurus" target="_blank" class="social-item">
                 <span>📷</span> Instagram Desa
@@ -1098,6 +989,7 @@
                 <p>Kec. Sambung Makmur, Kab. Banjar</p>
             </div>
             
+            <!-- Satu Navigasi Utama (Dropdown) -->
             <div class="nav-dropdown">
                 <button class="nav-btn" id="menu-btn" aria-haspopup="true" aria-expanded="false">
                     Menu Navigasi <span class="arrow">▼</span>
@@ -1106,20 +998,18 @@
                     <li><a href="#beranda" onclick="goBackToMain(); closeDropdown()">Beranda</a></li>
                     <li><a href="#profil" onclick="goBackToMain(); closeDropdown()">Profil</a></li>
                     
-                    <!-- MENU BPD -->
-                    <li><a href="#" onclick="showBPDView(); closeDropdown()" style="color: var(--accent-color); font-weight: 600;">📁 MENU BPD</a></li>
+                    <!-- MENU BARU: BPD, RT, & BUMDES (Diurutkan secara teratur di dropdown) -->
+                    <li><a href="#" onclick="showBPDView(); closeDropdown()" style="color: var(--accent-color); font-weight: 700;">📁 Menu BPD</a></li>
                     
-                    <!-- MENU RT (RT 1, RT 2, RT 3) -->
-                    <li class="menu-rt-header">📁 FOLDER RT</li>
+                    <li style="padding: 6px 20px; font-size: 11px; font-weight: bold; color: var(--gray-text); background-color: #f0f0f0;">FOLDER RT</li>
                     <li><a href="#" onclick="showRTView(1); closeDropdown()">RT 01</a></li>
                     <li><a href="#" onclick="showRTView(2); closeDropdown()">RT 02</a></li>
                     <li><a href="#" onclick="showRTView(3); closeDropdown()">RT 03</a></li>
                     
-                    <!-- MENU BUMDES -->
-                    <li class="menu-rt-header">📁 FOLDER BUMDES</li>
-                    <li><a href="#" onclick="showBUMDesView('main'); closeDropdown()" style="color: #40916c; font-weight: 600;">💼 MENU BUMDES</a></li>
+                    <li style="padding: 6px 20px; font-size: 11px; font-weight: bold; color: var(--gray-text); background-color: #f0f0f0;">FOLDER BUMDES</li>
+                    <li><a href="#" onclick="showBUMDesView('main'); closeDropdown()" style="color: var(--secondary-color); font-weight: 700;">💼 Menu BUMDes</a></li>
                     
-                    <li class="menu-rt-header">LAINNYA</li>
+                    <li style="border-top: 1px solid #eaeaea;"></li>
                     <li><a href="#berita" onclick="goBackToMain(); closeDropdown()">Berita</a></li>
                     <li><a href="#statistik" onclick="goBackToMain(); closeDropdown()">Statistik</a></li>
                     <li><a href="#aparatur" onclick="goBackToMain(); closeDropdown()">Aparatur</a></li>
@@ -1133,199 +1023,380 @@
         </div>
     </header>
 
-    <!-- WRAPPER HALAMAN UTAMA -->
-    <div id="main-content-wrapper">
-        <!-- Hero Section -->
-        <section id="beranda" style="padding: 0; max-width: 100%;">
-            <div class="hero">
-                <h2>Desa Sungai Lurus</h2>
-                <p>Mewujudkan tata kelola desa yang transparan, mandiri, dan berbudaya berbasis kearifan lokal.</p>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="beranda" style="padding: 0; max-width: 100%;">
+        <div class="hero">
+            <h2>Desa Sungai Lurus</h2>
+            <p>Mewujudkan tata kelola desa yang transparan, mandiri, dan berbudaya berbasis kearifan lokal.</p>
+        </div>
+    </section>
 
-        <!-- Profil Desa Section -->
-        <section id="profil">
-            <div class="section-title">
-                <h3>Profil Desa</h3>
+    <!-- Profil Desa Section -->
+    <section id="profil">
+        <div class="section-title">
+            <h3>Profil Desa</h3>
+        </div>
+        <div class="profil-container">
+            <div class="profil-text">
+                <p><strong>Desa Sungai Lurus</strong> secara administratif terletak di wilayah Kecamatan Sambung Makmur, Kabupaten Banjar, Provinsi Kalimantan Selatan. Desa ini dikenal dengan potensi alamnya yang melimpah, suasana pedesaan yang asri, serta adat gotong royong warga yang masih sangat kental.</p>
+                <p>Pemerintah desa berkomitmen meningkatkan kualitas hidup warga melalui optimalisasi sektor pertanian, pendampingan kelompok Usaha Mikro Kecil dan Menengah (UMKM), serta penyediaan akses pelayanan publik yang merata dan prima.</p>
             </div>
-            <div class="profil-container">
-                <div class="profil-text">
-                    <p><strong>Desa Sungai Lurus</strong> secara administratif terletak di wilayah Kecamatan Sambung Makmur, Kabupaten Banjar, Provinsi Kalimantan Selatan. Desa ini dikenal dengan potensi alamnya yang melimpah, suasana pedesaan yang asri, serta adat gotong royong warga yang masih sangat kental.</p>
-                    <p>Pemerintah desa berkomitmen meningkatkan kualitas hidup warga melalui optimalisasi sektor pertanian, pendampingan kelompok Usaha Mikro Kecil dan Menengah (UMKM), serta penyediaan akses pelayanan publik yang merata dan prima.</p>
-                </div>
-                <div class="profil-img">
-                    <img src="PRESTASI.jpg">
-                </div>
+            <div class="profil-img">
+                <img src="PRESTASI.jpg">
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Berita & Pengumuman Section -->
-        <section id="berita" style="background-color: #f9fbf9;">
-            <div class="section-title">
-                <h3>Berita & Pengumuman</h3>
-            </div>
-            <div class="news-slider-wrapper">
-                <div class="news-container">
-                    <div class="news-card">
-                        <img class="news-img" src="KAMPUNG KB.jpg" alt="Berita 1">
-                        <div class="news-content">
-                            <span class="news-date">26 Februari 2026</span>
-                            <h4 class="news-title">Pasar Murah Sinergitas Kabupaten Banjar</h4>
-                            <p class="news-desc">Sinergi dinas terkait dalam menghadirkan pasar murah bagi warga guna mendukung perekonomian lokal.</p>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <img class="news-img" src="KAMPUNG KB.jpg" alt="Berita 2">
-                        <div class="news-content">
-                            <span class="news-date">26 Februari 2026</span>
-                            <h4 class="news-title">Safari Ramadhan 1447 H Bupati Banjar</h4>
-                            <p class="news-desc">Pusat kegiatan keagamaan Safari Ramadhan dihadiri langsung oleh Bupati beserta jajaran Forkopimcam.</p>
-                        </div>
+    <!-- Berita & Pengumuman Section (Horizontal Scroll/Sliding) -->
+    <section id="berita" style="background-color: #f9fbf9;">
+        <div class="section-title">
+            <h3>Berita & Pengumuman</h3>
+        </div>
+        <div class="news-slider-wrapper">
+            <div class="news-container">
+                <!-- Berita 1 -->
+                <div class="news-card">
+                    <img class="news-img" src="KAMPUNG KB.jpg" alt="Berita 1">
+                    <div class="news-content">
+                        <span class="news-date">26 Februari 2026</span>
+                        <h4 class="news-title">Pasar Murah Sinergitas Kabupaten Banjar</h4>
+                        <p class="news-desc">Sinergi dinas terkait dalam menghadirkan pasar murah bagi warga guna mendukung perekonomian lokal.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Statistik -->
-        <section id="statistik">
-            <div class="section-title">
-                <h3>Statistik Penduduk</h3>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h4>2,662</h4>
-                    <p>Jumlah Penduduk</p>
+                <!-- Berita 2 -->
+                <div class="news-card">
+                    <img class="news-img" src="KAMPUNG KB.jpg" alt="Berita 2">
+                    <div class="news-content">
+                        <span class="news-date">26 Februari 2026</span>
+                        <h4 class="news-title">Safari Ramadhan 1447 H Bupati Banjar</h4>
+                        <p class="news-desc">Pusat kegiatan keagamaan Safari Ramadhan dihadiri langsung oleh Bupati beserta jajaran Forkopimcam.</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <h4>780</h4>
-                    <p>Jumlah Kepala Keluarga (KK)</p>
+                <!-- Berita 3 -->
+                <div class="news-card">
+                    <img class="news-img" src="PRESTASI.jpg">
+                    <div class="news-content">
+                        <span class="news-date">10 Januari 2026</span>
+                        <h4 class="news-title">Pelatihan Pembuatan Kerajinan PKK</h4>
+                        <p class="news-desc">Tim Penggerak PKK mengadakan pelatihan kreatif guna meningkatkan keterampilan ekonomi kreatif keluarga.</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <h4>1,320</h4>
-                    <p>Jumlah Laki-laki</p>
+                <!-- Berita 4 -->
+                <div class="news-card">
+                    <img class="news-img" src="https://images.unsplash.com/photo-1464234470488-18c8d2357b88?auto=format&fit=crop&w=350&q=80" alt="Berita 4">
+                    <div class="news-content">
+                        <span class="news-date">05 Januari 2026</span>
+                        <h4 class="news-title">Rapat Koordinasi RKPDesa Tahun Anggaran</h4>
+                        <p class="news-desc">Pemerintah Desa menyelaraskan prioritas pembangunan sarana infrastruktur irigasi.</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <h4>1,342</h4>
-                    <p>Jumlah Perempuan</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Struktur Aparatur Desa Section -->
-        <section id="aparatur" style="background-color: #f9fbf9;">
-            <div class="section-title">
-                <h3>Struktur Aparatur Desa</h3>
-            </div>
-            <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik pada kartu aparat untuk melihat biodata lengkap beserta foto.</p>
-            <div class="aparatur-grid">
-                <div class="aparatur-card" onclick="openBioModal('Jumain', 'Kec. Sambung Makmur, 12 Mei 1978', 'Kepala Desa', '48 Tahun', 'Islam', 'S1 Administrasi Publik', 'BAPAK KADES.jpg')">
-                    <img class="aparatur-avatar" src="BAPAK KADES.jpg" alt="Kepala Desa">
-                    <h4>Jumain</h4>
-                    <p>Kepala Desa</p>
-                    <button class="view-bio-btn">Lihat Biodata</button>
-                </div>
-                <div class="aparatur-card" onclick="openBioModal('Faisal Rizal', 'Kab. Banjar, 24 Agustus 1989', 'Sekretaris Desa', '37 Tahun', 'Islam', 'S1 Teknik Informatika', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80')">
-                    <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sekretaris Desa">
-                    <h4>Faisal Rizal</h4>
-                    <p>Sekretaris Desa</p>
-                    <button class="view-bio-btn">Lihat Biodata</button>
-                </div>
-                <div class="aparatur-card" onclick="openBioModal('Guru Amat', 'Sambung Makmur, 03 Maret 1984', 'Bendahara Desa', '42 Tahun', 'Islam', 'D3 Akuntansi', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80')">
-                    <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="Bendahara">
-                    <h4>Guru Amat</h4>
-                    <p>Bendahara Desa</p>
-                    <button class="view-bio-btn">Lihat Biodata</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Potensi Desa Section -->
-        <section id="potensi">
-            <div class="section-title">
-                <h3>Potensi Desa</h3>
-            </div>
-            <div class="potensi-container">
-                <div class="potensi-card" onclick="openGalleryModal('ketahananPangan')">
-                    <img class="potensi-img" src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80" alt="Ketahanan Pangan">
-                    <div class="potensi-info">
-                        <h4>Ketahanan Pangan Mandiri</h4>
-                        <p>Melalui program pembibitan mandiri dan pengelolaan irigasi tersier, Desa Sungai Lurus terus mendorong kemandirian pangan.</p>
-                        <button class="view-bio-btn" style="margin-top: 15px;">Buka Detail Galeri</button>
+                <!-- Berita 5 -->
+                <div class="news-card">
+                    <img class="news-img" src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=350&q=80" alt="Berita 5">
+                    <div class="news-content">
+                        <span class="news-date">20 Desember 2025</span>
+                        <h4 class="news-title">Pemeriksaan Kesehatan Posyandu Balita & Lansia</h4>
+                        <p class="news-desc">Pelayanan kesehatan gratis berkala guna mencegah stunting dan menjaga kebugaran lansia.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Sejarah & Dokumentasi -->
-        <section id="sejarah-arsip" style="background-color: #f9fbf9;">
-            <div class="section-title">
-                <h3>Sejarah & Dokumentasi Desa</h3>
+    <!-- Statistik & Demografi Section -->
+    <section id="statistik">
+        <div class="section-title">
+            <h3>Statistik Penduduk</h3>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>2,662</h4>
+                <p>Jumlah Penduduk</p>
             </div>
-            <div class="sejarah-video-wrapper">
-                <div class="sejarah-text">
-                    <h4 style="color: var(--primary-color); margin-bottom: 10px;">Sejarah Desa Sungai Lurus</h4>
-                    <p style="margin-bottom: 15px;">Penamaan Desa Sungai Lurus bersumber dari keberadaan sebuah sungai alami di daerah tersebut yang mengalir secara lurus membelah kawasan pemukiman awal warga setempat.</p>
+            <div class="stat-card">
+                <h4>780</h4>
+                <p>Jumlah Kepala Keluarga (KK)</p>
+            </div>
+            <div class="stat-card">
+                <h4>1,320</h4>
+                <p>Jumlah Laki-laki</p>
+            </div>
+            <div class="stat-card">
+                <h4>1,342</h4>
+                <p>Jumlah Perempuan</p>
+            </div>
+            <div class="stat-card">
+                <h4>5</h4>
+                <p>Kelahiran (30 Hari Terakhir)</p>
+            </div>
+            <div class="stat-card">
+                <h4>2</h4>
+                <p>Kematian (30 Hari Terakhir)</p>
+            </div>
+            <div class="stat-card">
+                <h4>2,410</h4>
+                <p>Total Warga Asli</p>
+            </div>
+            <div class="stat-card">
+                <h4>252</h4>
+                <p>Total Pendatang</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struktur Aparatur Desa Section -->
+    <section id="aparatur" style="background-color: #f9fbf9;">
+        <div class="section-title">
+            <h3>Struktur Aparatur Desa</h3>
+        </div>
+        <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik pada kartu aparat untuk melihat biodata lengkap beserta foto.</p>
+        <div class="aparatur-grid">
+            <!-- Aparat 1 -->
+            <div class="aparatur-card" onclick="openBioModal('Jumain ', 'Kec. Sambung Makmur, 12 Mei 1978', 'Kepala Desa', '48 Tahun', 'Islam', 'S1 Administrasi Publik', 'BAPAK KADES.jpg')">
+                <img class="aparatur-avatar" src="BAPAK KADES.jpg" alt="Kepala Desa">
+                <h4>Jumain</h4>
+                <p>Kepala Desa</p>
+                <button class="view-bio-btn">Lihat Biodata</button>
+            </div>
+            <!-- Aparat 2 -->
+            <div class="aparatur-card" onclick="openBioModal('Faisal Rizal', 'Kab. Banjar, 24 Agustus 1989', 'Sekretaris Desa', '37 Tahun', 'Islam', 'S1 Teknik Informatika', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80')">
+                <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sekretaris Desa">
+                <h4>Faisal Rizal </h4>
+                <p>Sekretaris Desa</p>
+                <button class="view-bio-btn">Lihat Biodata</button>
+            </div>
+            <!-- Aparat 3 -->
+            <div class="aparatur-card" onclick="openBioModal('Guru Amat', 'Sambung Makmur, 03 Maret 1984', 'Bendahara Desa', '42 Tahun', 'Islam', 'D3 Akuntansi', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80')">
+                <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="Bendahara">
+                <h4>Guru Amat</h4>
+                <p>Bendahara Desa</p>
+                <button class="view-bio-btn">Lihat Biodata</button>
+            </div>
+            <!-- Aparat 4 -->
+            <div class="aparatur-card" onclick="openBioModal('Saya Gatau ', 'Martapura, 15 Juli 1991', 'Kasi Pemerintahan', '35 Tahun', 'Islam', 'SMA Sederajat', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80')">
+                <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Kasi Pemerintahan">
+                <h4>Saya Gatau</h4>
+                <p>Kasi Pemerintahan</p>
+                <button class="view-bio-btn">Lihat Biodata</button>
+            </div>
+            <!-- Aparat 5 -->
+            <div class="aparatur-card" onclick="openBioModal('Saya Gatau ', 'Martapura, 15 Juli 1991', 'Kasi Pemerintahan', '35 Tahun', 'Islam', 'SMA Sederajat', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80')">
+                <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Kasi Pemerintahan">
+                <h4>Saya Gatau</h4>
+                <p>Ketua RT 01</p>
+                <button class="view-bio-btn">Lihat Biodata</button>
+            </div>
+            <!-- Aparat 6 -->
+            <div class="aparatur-card" onclick="openBioModal('Saya Gatau ', 'Martapura, 15 Juli 1991', 'Kasi Pemerintahan', '35 Tahun', 'Islam', 'SMA Sederajat', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80')">
+                <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Kasi Pemerintahan">
+                <h4>Saya Gatau</h4>
+                <p>Ketua RT 02</p>
+                <button class="view-bio-btn">Lihat Biodata</button>
+            </div>
+            <!-- Aparat 7 -->
+            <div class="aparatur-card" onclick="openBioModal('Saya Gatau ', 'Martapura, 15 Juli 1991', 'Kasi Pemerintahan', '35 Tahun', 'Islam', 'SMA Sederajat', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80')">
+                <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Kasi Pemerintahan">
+                <h4>Saya Gatau</h4>
+                <p>Ketua RT 03 </p>
+                <button class="view-bio-btn">Lihat Biodata</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Potensi Desa Section -->
+    <section id="potensi">
+        <div class="section-title">
+            <h3>Potensi Desa</h3>
+        </div>
+        <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik pada kartu potensi untuk melihat galeri foto dokumentasi lengkap beserta keterangan program.</p>
+        <div class="potensi-container">
+            <!-- Potensi 1 (Ketahanan Pangan) -->
+            <div class="potensi-card" onclick="openGalleryModal('ketahananPangan')">
+                <img class="potensi-img" src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80" alt="Ketahanan Pangan">
+                <div class="potensi-info">
+                    <h4>Ketahanan Pangan Mandiri</h4>
+                    <p>Melalui program pembibitan mandiri dan pengelolaan irigasi tersier, Desa Sungai Lurus terus mendorong kemandirian pangan khususnya di sektor pertanian padi, jagung, serta sayuran hortikultura.</p>
+                    <button class="view-bio-btn" style="margin-top: 15px;">Buka Detail Galeri</button>
                 </div>
-                <div class="sejarah-media">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/5qy1Xv_xW6g" title="Profil Desa" allowfullscreen></iframe>
+            </div>
+            <!-- Potensi 2 (Kerajinan PKK) -->
+            <div class="potensi-card" onclick="openGalleryModal('kerajinanUMKM')">
+                <img class="potensi-img" src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80" alt="Kerajinan PKK">
+                <div class="potensi-info">
+                    <h4>Kerajinan UMKM dari Ibu PKK</h4>
+                    <p>Mengoptimalkan bahan serat alam sekitar, kelompok Pemberdayaan Kesejahteraan Keluarga (PKK) memproduksi aneka tas anyaman unik, taplak meja, serta suvenir bernilai ekonomis tinggi.</p>
+                    <button class="view-bio-btn" style="margin-top: 15px;">Buka Detail Galeri</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sejarah, Foto, Video & Arsip Desa Section -->
+    <section id="sejarah-arsip" style="background-color: #f9fbf9;">
+        <div class="section-title">
+            <h3>Sejarah & Dokumentasi Desa</h3>
+        </div>
+        <div class="sejarah-video-wrapper">
+            <div class="sejarah-text">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">Sejarah Desa Sungai Lurus</h4>
+                <p style="margin-bottom: 15px;">Konon penamaan Desa Sungai Lurus bersumber dari keberadaan sebuah sungai alami di daerah tersebut yang mengalir secara lurus membelah kawasan pemukiman awal warga setempat. Aliran airnya yang lurus tanpa banyak kelokan menjadi jalur transportasi air utama bagi leluhur kami terdahulu.</p>
+                <p style="margin-bottom: 15px;">Sejak berpuluh tahun lalu, desa ini bertransformasi dari daerah pedalaman rimbun hingga menjadi kawasan pemukiman tertata di bawah naungan Kecamatan Sambung Makmur, Kabupaten Banjar.</p>
+            </div>
+            <div class="sejarah-media">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/5qy1Xv_xW6g" title="Profil Desa" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <h4 style="color: var(--primary-color); margin-top: 40px; margin-bottom: 10px; text-align: center;">Dokumen & Arsip Desa</h4>
+        <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik salah satu dokumen di bawah ini untuk membuka lembar arsip dokumentasi lebih lengkap.</p>
+        <div class="arsip-grid">
+            <!-- Pemicu Modal Galeri Arsip -->
+            <div class="arsip-card" onclick="openGalleryModal('dokumenArsip')">
+                <img class="arsip-media" src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=400&q=80" alt="Arsip Musyawarah">
+                <div class="arsip-desc">Dokumentasi Musrenbangdes 2025</div>
+            </div>
+            <div class="arsip-card" onclick="openGalleryModal('dokumenArsip')">
+                <img class="arsip-media" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=400&q=80" alt="Peta Desa">
+                <div class="arsip-desc">Dokumentasi Batas Administrasi Desa</div>
+            </div>
+            <div class="arsip-card" onclick="openGalleryModal('dokumenArsip')">
+                <img class="arsip-media" src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=80" alt="Arsip Sosialisasi">
+                <div class="arsip-desc">Dokumentasi Sosialisasi Kesehatan PKK</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prestasi PKK & Prestasi Lainnya Section -->
+    <section id="prestasi">
+        <div class="section-title">
+            <h3>Prestasi Desa</h3>
+        </div>
+        <div class="prestasi-grid">
+            <div class="prestasi-card">
+                <div class="prestasi-year">TAHUN 2025</div>
+                <div class="prestasi-title">Juara II Pelaksana Terbaik Posyandu & Kesehatan Keluarga</div>
+                <p style="font-size: 13px; color: var(--gray-text);">Diberikan oleh Dinas Kesehatan Kabupaten Banjar atas keberhasilan penanganan tumbuh kembang anak.</p>
+            </div>
+            <div class="prestasi-card">
+                <div class="prestasi-year">TAHUN 2024</div>
+                <div class="prestasi-title">Juara I Lomba Menghias Kerajinan Anyaman Serat PKK</div>
+                <p style="font-size: 13px; color: var(--gray-text);">Penghargaan dalam tingkat Kecamatan Sambung Makmur dalam agenda promosi UMKM lokal.</p>
+            </div>
+            <div class="prestasi-card">
+                <div class="prestasi-year">TAHUN 2024</div>
+                <div class="prestasi-title">Apresiasi Desa Mandiri Terbaik kategori Transparansi Publik</div>
+                <p style="font-size: 13px; color: var(--gray-text);">Penghargaan atas ketaatan memublikasikan Laporan Realisasi APBDesa melalui media terbuka.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layanan Desa Section (Rencana & Bukti Kegiatan) -->
+    <section id="layanan" style="background-color: #f9fbf9;">
+        <div class="section-title">
+            <h3>Layanan & Kegiatan Desa</h3>
+        </div>
+        <div class="layanan-split">
+            <!-- Rencana Kegiatan -->
+            <div class="layanan-col">
+                <h4>Rencana Kegiatan Mendatang</h4>
+                <ul class="kegiatan-list">
+                    <li class="kegiatan-item">
+                        <h5>Pelebaran Jalan Irigasi Sawah</h5>
+                        <p>Estimasi Pelaksanaan: Juli 2026 | Sektor: Infrastruktur Pertanian</p>
+                    </li>
+                    <li class="kegiatan-item">
+                        <h5>Pelatihan Pemasaran Digital Produk PKK</h5>
+                        <p>Estimasi Pelaksanaan: Agustus 2026 | Sektor: Pengembangan Ekonomi</p>
+                    </li>
+                    <li class="kegiatan-item">
+                        <h5>Penyuluhan Sanitasi Lingkungan & Jamban Sehat</h5>
+                        <p>Estimasi Pelaksanaan: September 2026 | Sektor: Kesehatan Warga</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Bukti Kegiatan yang Telah Dilaksanakan -->
+            <div class="layanan-col">
+                <h4>Bukti Kegiatan Terlaksana</h4>
+                
+                <div class="bukti-card">
+                    <img class="bukti-img" src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=400&q=80" alt="Kegiatan Pasar Murah">
+                    <div class="bukti-text">
+                        <h5>Sinergi Pasar Murah Bersama Dinas Terkait</h5>
+                        <p>Telah terlaksana dengan antusiasme tinggi dari warga guna pemenuhan bahan pokok terjangkau.</p>
+                    </div>
+                </div>
+
+                <div class="bukti-card">
+                    <img class="bukti-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" alt="Gotong Royong">
+                    <div class="bukti-text">
+                        <h5>Penyaluran BLT Dana Desa dan Kerja Bakti</h5>
+                        <p>Penyaluran dana bansos tepat sasaran dibarengi agenda kerja bakti pembersihan aliran air lingkungan.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Layanan -->
-        <section id="layanan">
-            <div class="section-title">
-                <h3>Layanan & Kegiatan Desa</h3>
-            </div>
-            <div class="layanan-split">
-                <div class="layanan-col">
-                    <h4>Rencana Kegiatan Mendatang</h4>
-                    <ul class="kegiatan-list">
-                        <li class="kegiatan-item">
-                            <h5>Pelebaran Jalan Irigasi Sawah</h5>
-                            <p>Estimasi Pelaksanaan: Juli 2026 | Sektor: Infrastruktur Pertanian</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="layanan-col">
-                    <h4>Bukti Kegiatan Terlaksana</h4>
-                    <div class="bukti-card">
-                        <img class="bukti-img" src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=400&q=80">
-                        <div class="bukti-text">
-                            <h5>Sinergi Pasar Murah Bersama Dinas Terkait</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+    <!-- Aspirasi, Pengaduan & Lokasi Section -->
+    <section id="aspirasi-lokasi">
+        <div class="section-title">
+            <h3>Hubungi Kami & Lokasi</h3>
+        </div>
+        
+        <!-- https://forms.gle/WGbf4TPasTh6UViE7 -->
+        <div class="aspirasi-container" style="margin-bottom: 40px; text-align: center;">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px;">Kotak Aspirasi & Pengaduan Warga</h4>
+            <p style="color: var(--gray-text); font-size: 14px; margin-bottom: 25px; line-height: 1.6;">
+                Guna mempermudah penampungan saran, aspirasi, serta laporan dari masyarakat secara cepat dan transparan, silakan klik tombol di bawah ini untuk mengisi formulir melalui Google Form resmi Desa Sungai Lurus.
+            </p>
+            <a href="https://forms.gle/WGbf4TPasTh6UViE7">
+                <span>📝</span> Buka Google Form Aspirasi
+            </a>
+        </div>
 
-    <!-- HALAMAN SUB-VIEW: BPD -->
-    <div id="bpd-view" style="display: none; max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <!-- Lokasi & Geografis Desa -->
+        <div class="map-section">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">Lokasi Geografis Desa</h4>
+            <p style="text-align: center; color: var(--gray-text); margin-bottom: 20px; font-size: 14px;">Desa Sungai Lurus terintegrasi langsung dengan sistem navigasi Google Maps. Peta interaktif di bawah dapat digeser dan diperbesar.</p>
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15933.20875416041!2d114.992683!3d-3.27546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dee254c7d013775%3A0xe549eb936bb483f9!2sSungai%20Lurus%2C%20Sambung%20Makmur%2C%20Banjar%20Regency%2C%20South%20Kalimantan!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAMBAHAN BARU: ELEMEN HALAMAN SUB-VIEW (BPD, RT, & BUMDES) -->
+    <!-- Ditambahkan secara murni di bagian paling bawah tubuh HTML, tanpa merusak tag aslinya -->
+    <!-- ========================================================================= -->
+
+    <!-- SUB-VIEW 1: BADAN PERMUSYAWARATAN DESA (BPD) -->
+    <section id="bpd-section" style="display: none; padding-top: 40px; padding-bottom: 40px;">
         <div class="section-title">
             <h3>Badan Permusyawaratan Desa (BPD)</h3>
         </div>
         
-        <div style="background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px;">
+        <!-- Visi & Misi BPD -->
+        <div style="background-color: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px;">
             <h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--accent-color); padding-bottom: 8px;">Visi & Misi BPD</h4>
-            <p style="font-weight: 600; font-size: 16px; color: var(--secondary-color); margin-bottom: 5px;">Visi:</p>
+            <p style="font-weight: 600; font-size: 15px; color: var(--secondary-color); margin-bottom: 5px;">Visi:</p>
             <p style="font-style: italic; margin-bottom: 20px; color: var(--dark-color);">"Mewujudkan BPD Desa Sungai Lurus yang Aspiratif, Transparan, Solutif, dan Sinergis dalam Menunjang Pembangunan Desa."</p>
             
-            <p style="font-weight: 600; font-size: 16px; color: var(--secondary-color); margin-bottom: 5px;">Misi:</p>
-            <ol style="margin-left: 20px; color: var(--dark-color); display: flex; flex-direction: column; gap: 8px;">
+            <p style="font-weight: 600; font-size: 15px; color: var(--secondary-color); margin-bottom: 5px;">Misi:</p>
+            <ul style="padding-left: 20px; color: var(--dark-color); display: flex; flex-direction: column; gap: 8px; font-size: 14.5px;">
                 <li>Menampung dan menyalurkan aspirasi masyarakat secara demokratis.</li>
                 <li>Melaksanakan pengawasan kinerja Pemerintah Desa secara objektif dan konstruktif.</li>
-                <li>Mendorong kemitraan dengan Pemerintah Desa untuk kesejahteraan warga.</li>
-            </ol>
+                <li>Mendorong sinergitas kemitraan dengan Pemerintah Desa demi peningkatan taraf ekonomi warga.</li>
+            </ul>
         </div>
 
+        <!-- Struktur BPD (Klik Foto memunculkan Biodata) -->
         <div class="section-title">
-            <h3>Struktur Organisasi BPD</h3>
+            <h3>Struktur Anggota BPD</h3>
         </div>
-        <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik foto untuk melihat biodata lengkap.</p>
-        
+        <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text); font-size: 14px;">Klik pada kartu kepengurusan di bawah untuk melihat biodata lengkap.</p>
         <div class="aparatur-grid" style="margin-bottom: 40px;">
             <div class="aparatur-card" onclick="openBioModal('Haji Muhammad', 'Sambung Makmur, 12 April 1975', 'Ketua BPD', '51 Tahun', 'Islam', 'S1 Hukum', 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80')">
                 <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" alt="Ketua BPD">
@@ -1341,265 +1412,258 @@
             </div>
         </div>
 
+        <!-- Program Kerja BPD Folder (Multi-Foto) -->
         <div class="section-title">
-            <h3>Program Kerja Terlaksana (BPD)</h3>
+            <h3>Program Kerja Terlaksana</h3>
         </div>
-        
-        <div class="potensi-container" style="margin-bottom: 50px;">
+        <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text); font-size: 14px;">Klik pada berkas folder untuk menampilkan album dokumentasi lengkap lebih dari satu foto.</p>
+        <div class="potensi-container" style="margin-bottom: 40px;">
             <div class="potensi-card" onclick="openGalleryModal('bpdMusyawarah')">
-                <div style="background: var(--accent-color); color: var(--white); padding: 12px; font-weight: 700; text-align: center;">
-                    📁 KUMPULAN DOKUMENTASI PROGRAM 1
+                <div style="background-color: var(--accent-color); color: var(--white); padding: 12px; font-weight: 700; text-align: center; border-radius: 8px 8px 0 0;">
+                    📁 KLIK UNTUK BUKA FOLDER (ALBUM KELOMPOK)
                 </div>
-                <img class="potensi-img" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80" alt="Musyawarah BPD">
+                <img class="potensi-img" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80" alt="Musyawarah">
                 <div class="potensi-info">
-                    <span class="folder-badge">MUTI-FOTO</span>
-                    <h4>Musyawarah Tokoh Masyarakat 2025</h4>
-                    <p>Serapan aspirasi langsung dari perwakilan warga guna pengawasan arah kebijakan desa.</p>
+                    <h4>Album Musyawarah BPD & Tokoh Masyarakat 2025</h4>
+                    <p>Serapan aspirasi pembangunan infrastruktur pedukuhan secara terbuka bersama seluruh pihak terkait.</p>
                 </div>
             </div>
         </div>
 
-        <button class="submit-btn" onclick="goBackToMain()" style="max-width: 250px; margin: 0 auto; display: block;">⬅ Kembali ke Menu Utama</button>
-    </div>
+        <!-- Tombol Navigasi Kembali ke Menu Halaman Navigasi -->
+        <div style="text-align: center;">
+            <button class="submit-btn" onclick="goBackToMain(); openMenuDropdown()" style="max-width: 280px; font-family: inherit;">⬅ Kembali ke Menu Navigasi</button>
+        </div>
+    </section>
 
-    <!-- HALAMAN SUB-VIEW: DETAIL RT (RT 1, RT 2, RT 3) -->
-    <div id="rt-view" style="display: none; max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+    <!-- SUB-VIEW 2: DETAIL RT (DINAMIS 1, 2, 3) -->
+    <section id="rt-section" style="display: none; padding-top: 40px; padding-bottom: 40px;">
         <div class="section-title">
-            <h3 id="rt-title">RT 01</h3>
+            <h3 id="rt-title-heading">Halaman RT</h3>
         </div>
         
-        <div class="rt-container" style="max-width: 800px; margin: 0 auto; background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;">
-            <!-- Nama & Foto Ketua RT di Bagian Atas -->
-            <img id="rt-photo" src="" alt="Ketua RT" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--secondary-color); margin-bottom: 20px;">
-            <h4 id="rt-chief" style="font-size: 22px; color: var(--primary-color); margin-bottom: 5px;">Nama Ketua RT</h4>
-            <p style="color: var(--accent-color); font-weight: 600; margin-bottom: 25px;">Ketua RT <span id="rt-num">1</span></p>
+        <div class="aspirasi-container" style="max-width: 800px; text-align: center; margin-bottom: 30px;">
+            <!-- Foto & Detail Ketua RT di Bagian Atas -->
+            <img id="rt-photo-img" src="" alt="Ketua RT" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid var(--secondary-color); margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <h4 id="rt-chief-name" style="font-size: 22px; color: var(--primary-color); margin-bottom: 5px;">Nama Ketua RT</h4>
+            <p id="rt-sub-title" style="color: var(--accent-color); font-weight: 700; margin-bottom: 20px; font-size: 14px; text-transform: uppercase;">Ketua RT</p>
             
             <!-- Jumlah Penduduk -->
-            <div style="background: var(--light-color); padding: 15px; border-radius: 8px; margin-bottom: 25px;">
-                <h5 style="color: var(--primary-color); font-size: 15px; margin-bottom: 5px; text-transform: uppercase;">Jumlah Penduduk RT</h5>
-                <p id="rt-population" style="font-size: 24px; font-weight: 700; color: var(--secondary-color);">0 Jiwa</p>
+            <div style="background-color: var(--light-color); padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid var(--secondary-color);">
+                <h5 style="color: var(--primary-color); font-size: 13px; text-transform: uppercase; margin-bottom: 3px;">Jumlah Penduduk</h5>
+                <p id="rt-population-val" style="font-size: 22px; font-weight: 700; color: var(--secondary-color);">0 Jiwa</p>
             </div>
 
             <!-- Program Kerja RT -->
             <div style="text-align: left; margin-bottom: 30px;">
-                <h5 style="color: var(--primary-color); font-size: 18px; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px;">Program Kerja RT</h5>
-                <ul id="rt-programs" style="list-style-type: none; display: flex; flex-direction: column; gap: 12px;"></ul>
+                <h5 style="color: var(--primary-color); font-size: 16px; margin-bottom: 12px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px;">Program Kerja</h5>
+                <ul id="rt-programs-list" style="list-style-type: none; display: flex; flex-direction: column; gap: 10px;"></ul>
             </div>
 
-            <!-- Dokumentasi RT (>3 Dokumentasi Berisi Tanggal & Keterangan) -->
-            <div style="text-align: left; margin-bottom: 35px;">
-                <h5 style="color: var(--primary-color); font-size: 18px; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px;">Dokumentasi Kegiatan</h5>
-                <p style="color: var(--gray-text); font-size: 13px; margin-bottom: 15px;">Klik tombol di bawah untuk melihat kumpulan berkas dokumentasi kegiatan RT yang dilampiri tanggal dan penjelasannya.</p>
-                <button class="sub-menu-btn" id="rt-gallery-btn" onclick="" style="width: 100%;">
-                    📸 Buka Album Kegiatan RT (>3 Berkas Dokumentasi)
-                </button>
+            <!-- Dokumentasi Foto RT (Klik untuk modal berisi foto, tanggal, penjelasan >3) -->
+            <div style="text-align: left; margin-bottom: 30px;">
+                <h5 style="color: var(--primary-color); font-size: 16px; margin-bottom: 12px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px;">Album Dokumentasi Kegiatan</h5>
+                <p style="color: var(--gray-text); font-size: 13px; margin-bottom: 15px;">Klik tombol folder di bawah untuk membuka kumpulan dokumentasi lengkap beserta keterangan tanggal (>3 data).</p>
+                <button id="rt-gallery-trigger" class="view-bio-btn" style="width: 100%; padding: 12px; font-size: 13px; border-radius: 8px; font-weight: 600;">📁 Buka Dokumentasi RT (>3 Foto & Tanggal)</button>
             </div>
 
-            <button class="submit-btn" onclick="goBackToMain()" style="max-width: 250px; margin: 0 auto; display: block;">⬅ Kembali ke Menu Utama</button>
+            <!-- Tombol Navigasi Kembali -->
+            <button class="submit-btn" onclick="goBackToMain()" style="max-width: 250px; display: block; margin: 0 auto; font-family: inherit;">⬅ Kembali</button>
         </div>
-    </div>
+    </section>
 
-    <!-- HALAMAN SUB-VIEW: BUMDES (Hub Utama & Sub-Folder) -->
-    <div id="bumdes-view" style="display: none; max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+    <!-- SUB-VIEW 3: BADAN USAHA MILIK DESA (BUMDES) -->
+    <section id="bumdes-section" style="display: none; padding-top: 40px; padding-bottom: 40px;">
         
-        <!-- BUMDES MAIN HUB -->
-        <div id="bumdes-main-hub">
+        <!-- PANEL UTAMA BUMDES -->
+        <div id="bumdes-main" style="display: block;">
             <div class="section-title">
-                <h3>Badan Usaha Milik Desa (BUMDes)</h3>
+                <h3>BUMDes Sungai Lurus</h3>
             </div>
-
-            <!-- Visi Misi BUMDes -->
-            <div style="background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px;">
+            
+            <!-- Visi & Misi BUMDes -->
+            <div style="background-color: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px;">
                 <h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--accent-color); padding-bottom: 8px;">Visi & Misi BUMDes</h4>
-                <p style="font-weight: 600; font-size: 16px; color: var(--secondary-color); margin-bottom: 5px;">Visi:</p>
-                <p style="font-style: italic; margin-bottom: 20px; color: var(--dark-color);">"Menjadi pilar utama perekonomian Desa Sungai Lurus yang mandiri, berdaya saing tinggi, dan menyejahterakan seluruh lapisan masyarakat desa."</p>
+                <p style="font-weight: 600; font-size: 15px; color: var(--secondary-color); margin-bottom: 5px;">Visi:</p>
+                <p style="font-style: italic; margin-bottom: 20px; color: var(--dark-color);">"Menjadi motor penggerak ekonomi Desa Sungai Lurus yang mandiri, berdaya guna, dan berkelanjutan."</p>
                 
-                <p style="font-weight: 600; font-size: 16px; color: var(--secondary-color); margin-bottom: 5px;">Misi:</p>
-                <ol style="margin-left: 20px; color: var(--dark-color); display: flex; flex-direction: column; gap: 8px;">
-                    <li>Mengelola potensi sumber daya alam desa secara produktif dan berkelanjutan.</li>
-                    <li>Memberdayakan UMKM melalui kemitraan strategis.</li>
-                    <li>Mengoptimalkan Pendapatan Asli Desa (PADes).</li>
-                </ol>
+                <p style="font-weight: 600; font-size: 15px; color: var(--secondary-color); margin-bottom: 5px;">Misi:</p>
+                <ul style="padding-left: 20px; color: var(--dark-color); display: flex; flex-direction: column; gap: 8px; font-size: 14px;">
+                    <li>Mengoptimalkan potensi sumber daya lokal untuk kesejahteraan masyarakat desa.</li>
+                    <li>Membangun kemitraan produktif dengan pelaku UMKM serta kelompok usaha tani.</li>
+                    <li>Memberikan kontribusi nyata dalam penyerapan Pendapatan Asli Desa (PADes).</li>
+                </ul>
             </div>
 
-            <!-- Struktur Organisasi BUMDes -->
+            <!-- Struktur Kepengurusan BUMDes -->
             <div class="section-title">
                 <h3>Struktur Kepengurusan BUMDes</h3>
             </div>
-            <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text);">Klik foto pengurus BUMDes untuk memunculkan biodata lengkap.</p>
+            <p style="text-align:center; margin-bottom: 25px; color: var(--gray-text); font-size: 14px;">Klik foto pengurus BUMDes di bawah untuk menampilkan lembar biodata.</p>
             <div class="aparatur-grid" style="margin-bottom: 40px;">
                 <div class="aparatur-card" onclick="openBioModal('Ir. Hendra Wijaya', 'Banjarmasin, 15 Juni 1982', 'Direktur Utama BUMDes', '44 Tahun', 'Islam', 'S1 Manajemen Bisnis', 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80')">
-                    <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80" alt="Dirut BUMDes">
+                    <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80" alt="Direktur Utama">
                     <h4>Ir. Hendra Wijaya</h4>
                     <p>Direktur Utama</p>
                     <button class="view-bio-btn">Lihat Biodata</button>
                 </div>
                 <div class="aparatur-card" onclick="openBioModal('Rina Astuti, S.Ak', 'Sambung Makmur, 10 September 1993', 'Sekretaris BUMDes', '32 Tahun', 'Islam', 'S1 Akuntansi', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80')">
-                    <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sekretaris BUMDes">
+                    <img class="aparatur-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Sekretaris">
                     <h4>Rina Astuti, S.Ak</h4>
                     <p>Sekretaris</p>
                     <button class="view-bio-btn">Lihat Biodata</button>
                 </div>
             </div>
 
-            <!-- Sub Folder Pilihan BUMDes -->
+            <!-- Menu Folder Sub BUMDes -->
             <div class="section-title">
-                <h3>Folder Layanan & Menu BUMDes</h3>
+                <h3>Folder Menu Layanan BUMDes</h3>
             </div>
-            <div class="bumdes-grid-menu">
-                <button class="sub-menu-btn" onclick="switchBUMDesTab('aset')">📁 Folder Aset BUMDes</button>
-                <button class="sub-menu-btn" onclick="switchBUMDesTab('proker')">📁 Folder Program Kerja</button>
-                <button class="sub-menu-btn" onclick="switchBUMDesTab('keuangan')">📊 Laporan Keuangan (Excel)</button>
-                <button class="sub-menu-btn" onclick="switchBUMDesTab('kritik')">📝 Kritik & Saran Form</button>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                <button class="view-bio-btn" onclick="showBUMDesView('aset')" style="padding: 18px; font-size: 14px; border-radius: 8px;">📁 Folder Aset BUMDes</button>
+                <button class="view-bio-btn" onclick="showBUMDesView('proker')" style="padding: 18px; font-size: 14px; border-radius: 8px;">📁 Folder Program Kerja</button>
+                <button class="view-bio-btn" onclick="showBUMDesView('keuangan')" style="padding: 18px; font-size: 14px; border-radius: 8px;">📊 Folder Keuangan (Excel)</button>
+                <button class="view-bio-btn" onclick="showBUMDesView('kritik')" style="padding: 18px; font-size: 14px; border-radius: 8px;">📝 Folder Kritik & Saran</button>
             </div>
 
-            <button class="submit-btn" onclick="goBackToMain()" style="max-width: 250px; margin: 0 auto; display: block;">⬅ Kembali ke Menu Utama</button>
+            <button class="submit-btn" onclick="goBackToMain()" style="max-width: 250px; display: block; margin: 0 auto; font-family: inherit;">⬅ Kembali ke Halaman Utama</button>
         </div>
 
-        <!-- BUMDES SUB-VIEW: ASET BUMDES (>3 Aset) -->
-        <div id="bumdes-aset-section" style="display: none;">
+        <!-- PANEL 1: FOLDER ASET BUMDES (>3 Aset) -->
+        <div id="bumdes-aset-panel" style="display: none;">
             <div class="section-title">
-                <h3>Folder Aset BUMDes</h3>
+                <h3>Daftar Aset BUMDes</h3>
             </div>
             <div class="potensi-container" style="margin-bottom: 40px;">
                 <div class="potensi-card">
                     <img class="potensi-img" src="https://images.unsplash.com/photo-1516576880881-140175b0583f?auto=format&fit=crop&w=500&q=80">
                     <div class="potensi-info">
-                        <h4>Unit Pick-Up Logistik</h4>
-                        <p>Sarana transportasi operasional penunjang distribusi komoditas pertanian dan logistik UMKM mitra desa.</p>
+                        <h4>Aset 1: Unit Mobil Pick-Up</h4>
+                        <p>Sarana angkutan logistik hasil panen pertanian dan pengiriman kerajinan tangan mitra binaan.</p>
                     </div>
                 </div>
                 <div class="potensi-card">
                     <img class="potensi-img" src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80">
                     <div class="potensi-info">
-                        <h4>Mesin Penggiling Padi</h4>
-                        <p>Fasilitas pengolahan gabah hasil panen lokal guna menghasilkan kemasan beras premium khas Desa Sungai Lurus.</p>
+                        <h4>Aset 2: Mesin Penggiling Padi</h4>
+                        <p>Unit pengolahan gabah hasil panen lokal demi optimalisasi kualitas beras kemasan premium desa.</p>
                     </div>
                 </div>
                 <div class="potensi-card">
                     <img class="potensi-img" src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=500&q=80">
                     <div class="potensi-info">
-                        <h4>Grosir Sembako Mart</h4>
-                        <p>Penyediaan barang kebutuhan pokok terjangkau guna menyokong stabilitas daya beli warga desa.</p>
+                        <h4>Aset 3: Kios Toko Kelontong</h4>
+                        <p>Aset ritel desa penyedia pupuk subsidi, pakan ternak, dan sembako murah bagi warga.</p>
                     </div>
                 </div>
                 <div class="potensi-card">
                     <img class="potensi-img" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=500&q=80">
                     <div class="potensi-info">
-                        <h4>Inventaris Peralatan Sewa</h4>
-                        <p>Tenda, kursi, dan sistem pengeras suara terpadu yang disewakan untuk penyelenggaraan hajatan atau forum warga.</p>
+                        <h4>Aset 4: Tenda & Kursi Inventaris</h4>
+                        <p>Unit usaha persewaan perlengkapan serbaguna hajatan dan pertemuan masyarakat desa.</p>
                     </div>
                 </div>
             </div>
-            <button class="submit-btn" onclick="switchBUMDesTab('main')" style="max-width: 250px; margin: 0 auto; display: block;">⬅ Kembali ke Menu BUMDes</button>
+            <button class="submit-btn" onclick="showBUMDesView('main')" style="max-width: 250px; display: block; margin: 0 auto; font-family: inherit;">⬅ Kembali ke Halaman BUMDes</button>
         </div>
 
-        <!-- BUMDES SUB-VIEW: PROGRAM KERJA (Akan datang & Terlaksana) -->
-        <div id="bumdes-proker-section" style="display: none;">
+        <!-- PANEL 2: PROGRAM KERJA BUMDES (Akan dilaksanakan vs Terlaksana) -->
+        <div id="bumdes-proker-panel" style="display: none;">
             <div class="section-title">
-                <h3>Folder Program Kerja BUMDes</h3>
+                <h3>Folder Program Kerja</h3>
             </div>
             <div class="layanan-split" style="margin-bottom: 40px;">
                 <div class="layanan-col">
-                    <h4>Program yang Akan Dilaksanakan</h4>
+                    <h4>Program Kerja Mendatang (Akan Dilaksanakan)</h4>
                     <ul class="kegiatan-list">
                         <li class="kegiatan-item">
-                            <h5>Pengembangan Ekowisata Sungai</h5>
-                            <p>Rencana Mulai: November 2026 | Sektor: Pariwisata Berbasis Alam</p>
+                            <h5>Pengembangan Destinasi Wisata Sungai Lurus</h5>
+                            <p>Estimasi Mulai: Akhir 2026 | Sektor: Pariwisata Alam</p>
                         </li>
                         <li class="kegiatan-item">
-                            <h5>Sertifikasi Halal & BPOM Produk Mitra</h5>
-                            <p>Rencana Mulai: September 2026 | Sektor: Pengembangan Usaha</p>
+                            <h5>Pelatihan Sertifikasi Halal Usaha Kuliner Desa</h5>
+                            <p>Estimasi Mulai: September 2026 | Sektor: Penguatan UMKM</p>
                         </li>
                     </ul>
                 </div>
                 <div class="layanan-col">
-                    <h4>Program yang Telah Dijalankan</h4>
+                    <h4>Program Kerja Terlaksana (Beserta Bukti)</h4>
                     <div class="bukti-card">
                         <img class="bukti-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80">
                         <div class="bukti-text">
-                            <h5>Kemitraan Distribusi Beras Premium</h5>
-                            <p>Telah terlaksana program serapan beras tani lokal didistribusikan ke jaringan ritel terintegrasi kecamatan.</p>
+                            <h5>Distribusi Pupuk Bersubsidi Terpadu</h5>
+                            <p>Telah tersalurkan pupuk pertanian bersubsidi secara merata ke seluruh gabungan kelompok tani (Gapoktan).</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="submit-btn" onclick="switchBUMDesTab('main')" style="max-width: 250px; margin: 0 auto; display: block;">⬅ Kembali ke Menu BUMDes</button>
+            <button class="submit-btn" onclick="showBUMDesView('main')" style="max-width: 250px; display: block; margin: 0 auto; font-family: inherit;">⬅ Kembali ke Halaman BUMDes</button>
         </div>
 
-        <!-- BUMDES SUB-VIEW: LAPORAN KEUANGAN (Otomatis dari Excel) -->
-        <div id="bumdes-keuangan-section" style="display: none;">
+        <!-- PANEL 3: LAPORAN KEUANGAN (Excel Reader Otomatis) -->
+        <div id="bumdes-keuangan-panel" style="display: none;">
             <div class="section-title">
-                <h3>Laporan Keuangan 6 Bulan Terakhir</h3>
+                <h3>Laporan Realisasi Kas BUMDes</h3>
             </div>
             
-            <p style="text-align: center; color: var(--gray-text); margin-bottom: 25px; font-size: 14px;">
-                Unggah berkas laporan keuangan BUMDes (.xlsx / .xls). Nominal keuangan di bawah akan <strong>otomatis terhitung dan berubah</strong> sesuai dengan isi file Excel Anda.
-            </p>
-
-            <!-- Drag & Drop Input Excel -->
-            <div class="excel-dropzone" onclick="document.getElementById('excel-file-input').click()">
-                <p style="font-weight: 600; color: var(--primary-color);">📁 Klik atau Seret File Excel ke Sini</p>
-                <p style="font-size: 12px; color: var(--gray-text); margin-top: 5px;">Mendukung berkas berekstensi .xlsx atau .xls</p>
-                <input type="file" id="excel-file-input" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelUpload(event)">
-            </div>
-
-            <!-- Financial Value Card Grid -->
-            <div class="financial-card-grid">
-                <div class="financial-val-card masuk">
-                    <h5>Total Uang Masuk (6 Bulan)</h5>
-                    <p id="uang-masuk-val">Rp 45.000.000</p>
+            <div style="background-color: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; text-align: center;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 16px;">Unggah File Laporan Keuangan (.xlsx / .xls)</h4>
+                <p style="color: var(--gray-text); font-size: 13px; margin-bottom: 20px;">Sistem akan membaca file Excel Anda dan langsung merubah nominal di bawah secara otomatis.</p>
+                
+                <!-- Input File Selector -->
+                <div style="border: 2px dashed var(--secondary-color); padding: 20px; border-radius: 8px; cursor: pointer; background-color: #fcfdfc; margin-bottom: 20px;" onclick="document.getElementById('excel-file-selector').click()">
+                    <span style="font-size: 24px; color: var(--secondary-color);">📁</span>
+                    <p style="font-weight: 600; color: var(--primary-color); font-size: 14px; margin-top: 5px;">Klik untuk memilih Berkas Excel</p>
+                    <input type="file" id="excel-file-selector" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelUpload(event)">
                 </div>
-                <div class="financial-val-card keluar">
-                    <h5>Total Uang Keluar (6 Bulan)</h5>
-                    <p id="uang-keluar-val">Rp 28.500.000</p>
+
+                <!-- Tampilan Nominal Otomatis -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+                    <div style="background-color: #f4fdf4; border-top: 4px solid var(--secondary-color); padding: 20px; border-radius: 8px;">
+                        <h5 style="font-size: 12px; color: var(--gray-text); text-transform: uppercase;">Total Uang Masuk (6 Bulan)</h5>
+                        <p id="uang-masuk-val" style="font-size: 22px; font-weight: 700; color: var(--primary-color); margin-top: 5px;">Rp 45.000.000</p>
+                    </div>
+                    <div style="background-color: #fdf5f4; border-top: 4px solid var(--accent-color); padding: 20px; border-radius: 8px;">
+                        <h5 style="font-size: 12px; color: var(--gray-text); text-transform: uppercase;">Total Uang Keluar (6 Bulan)</h5>
+                        <p id="uang-keluar-val" style="font-size: 22px; font-weight: 700; color: #b45309; margin-top: 5px;">Rp 28.500.000</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Petunjuk Pembuatan Dokumen Excel -->
-            <div style="background-color: var(--white); padding: 20px; border-radius: 8px; margin-bottom: 40px; border: 1px solid #eaeaea;">
-                <h5 style="color: var(--primary-color); font-size: 14px; margin-bottom: 10px;">💡 Petunjuk Struktur File Excel Agar Terbaca Otomatis:</h5>
-                <ul style="font-size: 12px; color: var(--gray-text); padding-left: 20px; display:flex; flex-direction:column; gap:5px;">
-                    <li>Sistem membaca baris secara dinamis.</li>
-                    <li>Gunakan kata kunci <strong>"masuk"</strong>, <strong>"pendapatan"</strong>, atau <strong>"penerimaan"</strong> pada kolom rincian transaksi untuk menambah total Uang Masuk.</li>
-                    <li>Gunakan kata kunci <strong>"keluar"</strong>, <strong>"pengeluaran"</strong>, atau <strong>"belanja"</strong> pada kolom rincian transaksi untuk menambah total Uang Keluar.</li>
-                </ul>
-            </div>
-
-            <button class="submit-btn" onclick="switchBUMDesTab('main')" style="max-width: 250px; margin: 0 auto; display: block;">⬅ Kembali ke Menu BUMDes</button>
+            <button class="submit-btn" onclick="showBUMDesView('main')" style="max-width: 250px; display: block; margin: 0 auto; font-family: inherit;">⬅ Kembali</button>
         </div>
 
-        <!-- BUMDES SUB-VIEW: KRITIK DAN SARAN GOOGLE FORM -->
-        <div id="bumdes-kritik-section" style="display: none;">
+        <!-- PANEL 4: EVALUASI, KRITIK & SARAN (Google Form) -->
+        <div id="bumdes-kritik-panel" style="display: none;">
             <div class="section-title">
-                <h3>Kritik & Saran BUMDes</h3>
+                <h3>Kotak Evaluasi BUMDes</h3>
             </div>
-            <div class="aspirasi-container" style="margin-bottom: 40px; text-align: center;">
-                <h4 style="color: var(--primary-color); margin-bottom: 15px;">Evaluasi Layanan BUMDes</h4>
-                <p style="color: var(--gray-text); font-size: 14px; margin-bottom: 25px; line-height: 1.6;">
-                    Guna mengoptimalkan kualitas layanan usaha, mohon kesediaan warga untuk mengirimkan masukan, kritik, maupun saran membangun melalui tautan formulir Google Form di bawah ini.
+            <div class="aspirasi-container" style="max-width: 700px; text-align: center; margin-bottom: 40px;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">Formulir Evaluasi Masyarakat</h4>
+                <p style="color: var(--gray-text); font-size: 13.5px; margin-bottom: 25px; line-height: 1.6;">
+                    Guna mewujudkan mutu pelayanan yang transparan, silakan isi kritik serta saran konstruktif melalui formulir online di bawah ini.
                 </p>
-                <a href="https://forms.gle/WGbf4TPasTh6UViE7" target="_blank" class="submit-btn" style="display:inline-block; text-decoration:none; padding:12px 0;">
-                    📝 Kirim Masukan via Google Form
+                <a href="https://forms.gle/WGbf4TPasTh6UViE7" target="_blank" class="submit-btn" style="text-decoration: none; display: inline-block; padding: 12px 30px; border-radius: 6px; color: var(--white); background-color: var(--primary-color); font-family: inherit;">
+                    📝 Buka Google Form Masukan BUMDes
                 </a>
             </div>
-            <button class="submit-btn" onclick="switchBUMDesTab('main')" style="max-width: 250px; margin: 0 auto; display: block;">⬅ Kembali ke Menu BUMDes</button>
+            <button class="submit-btn" onclick="showBUMDesView('main')" style="max-width: 250px; display: block; margin: 0 auto; font-family: inherit;">⬅ Kembali</button>
         </div>
 
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Pemerintah Desa Sungai Lurus.</p>
     </footer>
 
-    <!-- MODAL 1: BIODATA -->
+    <!-- Modal 1: Biodata Aparatur -->
     <div id="bioModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeBioModal()">&times;</span>
             <div class="modal-body">
                 <div class="modal-img-container">
-                    <img id="modal-foto" src="" alt="Foto">
+                    <img id="modal-foto" src="" alt="Foto Aparat">
                 </div>
                 <div class="modal-info">
                     <h3 id="modal-nama" style="color: var(--primary-color); margin-bottom: 5px;"></h3>
@@ -1631,45 +1695,57 @@
         </div>
     </div>
 
-    <!-- MODAL 2: MULTI-FOTO GALERI -->
+    <!-- Modal 2: Galeri Multi-Foto Potensi & Arsip (Large Modal) -->
     <div id="galleryModal" class="modal">
         <div class="modal-content large">
             <span class="close-btn" onclick="closeGalleryModal()">&times;</span>
             <h3 id="gallery-modal-title" style="color: var(--primary-color); margin-bottom: 5px; text-transform: uppercase;"></h3>
             <p id="gallery-modal-desc" style="font-size: 13.5px; color: var(--gray-text); margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;"></p>
-            <div class="gallery-grid" id="gallery-grid-container"></div>
+            
+            <div class="gallery-grid" id="gallery-grid-container">
+                <!-- Data dimasukkan via JavaScript -->
+            </div>
         </div>
     </div>
 
     <!-- JavaScript Internal -->
     <script>
-        // Logika Layar Pembuka
+        // Logika Perpindahan dari Halaman Pembuka ke Website Utama
         function enterSite() {
             const landingPage = document.getElementById('landing-page');
+            
+            // Tambahkan kelas fade-out untuk mengaktifkan animasi pergeseran ke atas
             landingPage.classList.add('fade-out');
+            
+            // Hapus pengunci gulir (scroll) pada body
             document.body.classList.remove('landing-active');
+            
+            // Sembunyikan elemen halaman pembuka sepenuhnya setelah transisi selesai (800ms)
             setTimeout(() => {
                 landingPage.style.display = 'none';
             }, 800);
         }
 
-        // Dropdown Menu Navigasi
+        // Logika Satu Navigasi Utama (Dropdown Menu)
         const menuBtn = document.getElementById('menu-btn');
         const navList = document.getElementById('nav-list');
 
+        // Toggle visibilitas dropdown saat tombol ditekan
         menuBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
+            event.stopPropagation(); // Mencegah penutupan instan dari event window click
             navList.classList.toggle('show');
             menuBtn.classList.toggle('active');
         });
 
+        // Menutup dropdown menu setelah link navigasi ditekan
         function closeDropdown() {
             navList.classList.remove('show');
             menuBtn.classList.remove('active');
         }
 
-        // Modal Biodata
+        // Logika Modal Biodata Aparatur
         const bioModal = document.getElementById('bioModal');
+        
         function openBioModal(nama, ttl, jabatan, umur, agama, pendidikan, fotoUrl) {
             document.getElementById('modal-nama').innerText = nama;
             document.getElementById('modal-ttl').innerText = ttl;
@@ -1678,6 +1754,7 @@
             document.getElementById('modal-agama').innerText = agama;
             document.getElementById('modal-pendidikan').innerText = pendidikan;
             document.getElementById('modal-foto').src = fotoUrl;
+            
             bioModal.classList.add('show');
         }
 
@@ -1685,7 +1762,7 @@
             bioModal.classList.remove('show');
         }
 
-        // Modal Galeri Multi-Foto
+        // Logika Galeri Multi-Foto Dinamis
         const galleryModal = document.getElementById('galleryModal');
         const galleryGridContainer = document.getElementById('gallery-grid-container');
         const galleryModalTitle = document.getElementById('gallery-modal-title');
@@ -1694,18 +1771,95 @@
         const dataGaleri = {
             ketahananPangan: {
                 title: "Ketahanan Pangan Mandiri",
-                desc: "Rangkaian program swasembada pangan Desa Sungai Lurus.",
+                desc: "Rangkaian program dan kegiatan pemberdayaan pertanian guna mewujudkan swasembada pangan di lingkungan Desa Sungai Lurus.",
                 items: [
-                    { img: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80", caption: "<strong>Sawah Produktif:</strong> Lahan sawah unggulan penggarapan kelompok tani." },
-                    { img: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=500&q=80", caption: "<strong>Kebun Organik:</strong> Penanaman sayur hortikultura lokal." }
+                    {
+                        img: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Sawah Padi Unggul:</strong> Area persawahan produktif yang dikelola oleh kelompok tani dengan menggunakan bibit bersertifikat hasil panen melimpah."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Kebun Sayur Hidroponik:</strong> Program pemanfaatan pekarangan rumah tangga terpadu untuk penyediaan sayuran segar bebas bahan kimia berbahaya."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Kolam Budidaya Ikan:</strong> Penyediaan sumber protein hewani warga melalui pengelolaan kolam ikan nila dan emas secara swadaya."
+                    }
                 ]
             },
-            bpdMusyawarah: {
-                title: "Musyawarah Tokoh Masyarakat 2025",
-                desc: "Forum aspirasi berkala BPD guna menampung keluhan pembangunan infrastruktur pemukiman warga.",
+            kerajinanUMKM: {
+                title: "Kerajinan UMKM dari Ibu PKK",
+                desc: "Kreativitas kelompok wanita tani dan kader PKK dalam mengolah potensi alam menjadi produk bernilai ekonomi tinggi.",
                 items: [
-                    { img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80", caption: "<strong>Sesi Penyampaian:</strong> Warga menyampaikan perbaikan akses jembatan." },
-                    { img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=500&q=80", caption: "<strong>Formulasi Program:</strong> Anggota BPD merinci prioritas program pembangunan tahun anggaran berjalan." }
+                    {
+                        img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Anyaman Serat Purun:</strong> Produk tas belanja, wadah serbaguna, dan topi anyaman ramah lingkungan buatan tangan ibu-ibu PKK."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Olahan Keripik Pisang Khas:</strong> Pembuatan jajanan keripik pisang renyah dalam berbagai varian rasa hasil produksi dapur rumah tangga PKK."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Keterampilan Sulam Kain Sasirangan:</strong> Kegiatan pelatihan pembuatan motif kain sasirangan bernuansa etnik khas Kalimantan Selatan."
+                    }
+                ]
+            },
+            dokumenArsip: {
+                title: "Dokumen & Arsip Resmi Desa",
+                desc: "Penyimpanan visual, dokumentasi musyawarah, serta berkas administrasi batas pemetaan wilayah Desa Sungai Lurus.",
+                items: [
+                    {
+                        img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Musyawarah RKPDesa 2025:</strong> Proses pengambilan keputusan partisipatif bersama seluruh unsur masyarakat desa dalam merancang APBDesa."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Pemetaan Batas Wilayah:</strong> Berkas verifikasi batas koordinat geografis administrasi yang dikoordinasikan secara tertulis."
+                    },
+                    {
+                        img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=500&q=80",
+                        caption: "<strong>Sosialisasi Administrasi & Program PKK:</strong> Arsip publikasi alokasi program kerja kader PKK sepanjang tahun berjalan."
+                    }
+                ]
+            },
+            // PENDAFTARAN DATA GALERI BARU: BPD & RT 1/2/3
+            bpdMusyawarah: {
+                title: "Musyawarah & Tokoh Masyarakat BPD",
+                desc: "Kumpulan album dokumentasi serapan aspirasi fisik BPD Desa Sungai Lurus.",
+                items: [
+                    { img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80", caption: "<strong>Sesi Pertemuan:</strong> Diskusi panel terbuka BPD dan tokoh masyarakat guna membahas infrastruktur gang." },
+                    { img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=500&q=80", caption: "<strong>Perumusan Program:</strong> Sesi pencatatan skala prioritas anggaran realisasi pembangunan fisik." }
+                ]
+            },
+            rt1Gallery: {
+                title: "Dokumentasi & Kegiatan RT 01",
+                desc: "Kumpulan galeri foto aktivitas sosial kemasyarakatan di lingkungan RT 01.",
+                items: [
+                    { img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=500&q=80", caption: "<strong>12 Januari 2026:</strong> Agenda penyaluran jatah bantuan sembako lansia RT 01." },
+                    { img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80", caption: "<strong>15 Februari 2026:</strong> Forum koordinasi siskamling malam RT 01." },
+                    { img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=500&q=80", caption: "<strong>10 Maret 2026:</strong> Gotong royong berkala pembersihan drainase RT 01." },
+                    { img: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500&q=80", caption: "<strong>25 April 2026:</strong> Agenda cek kesehatan gratis (tensi/darah) warga lansia RT 01." }
+                ]
+            },
+            rt2Gallery: {
+                title: "Dokumentasi & Kegiatan RT 02",
+                desc: "Kumpulan galeri foto aktivitas sosial kemasyarakatan di lingkungan RT 02.",
+                items: [
+                    { img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80", caption: "<strong>08 Januari 2026:</strong> Pelatihan kerajinan daur ulang limbah oleh dasawisma RT 02." },
+                    { img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=500&q=80", caption: "<strong>14 Februari 2026:</strong> Gotong royong perbaikan jalan setapak gang RT 02." },
+                    { img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80", caption: "<strong>11 Maret 2026:</strong> Sosialisasi pencegahan DBD dan jentik nyamuk." },
+                    { img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=500&q=80", caption: "<strong>02 April 2026:</strong> Rapat program PKK dasawisma RT 02." }
+                ]
+            },
+            rt3Gallery: {
+                title: "Dokumentasi & Kegiatan RT 03",
+                desc: "Kumpulan galeri foto aktivitas sosial kemasyarakatan di lingkungan RT 03.",
+                items: [
+                    { img: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80", caption: "<strong>10 Januari 2026:</strong> Panen hidroponik program lumbung gizi hijau RT 03." },
+                    { img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=80", caption: "<strong>18 Februari 2026:</strong> Pemasangan tiang lampu gang swadaya di RT 03." },
+                    { img: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=500&q=80", caption: "<strong>05 Maret 2026:</strong> Tebar bibit tawar kolam mandiri RT 03." },
+                    { img: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500&q=80", caption: "<strong>22 April 2026:</strong> Layanan timbang balita posyandu terpadu RT 03." }
                 ]
             }
         };
@@ -1722,7 +1876,7 @@
                 const itemCard = document.createElement('div');
                 itemCard.className = 'gallery-item';
                 itemCard.innerHTML = `
-                    <img src="${item.img}" alt="Foto">
+                    <img src="${item.img}" alt="Foto Dokumentasi">
                     <p>${item.caption}</p>
                 `;
                 galleryGridContainer.appendChild(itemCard);
@@ -1735,28 +1889,85 @@
             galleryModal.classList.remove('show');
         }
 
-        // DATABASE DINAMIS UNTUK RT (RT 01, RT 02, RT 03)
-        const dataRT = {
+        // Menutup dropdown menu atau modal jika area luar diklik
+        window.onclick = function(event) {
+            if (!menuBtn.contains(event.target) && !navList.contains(event.target)) {
+                closeDropdown();
+            }
+            if (event.target == bioModal) {
+                closeBioModal();
+            } else if (event.target == galleryModal) {
+                closeGalleryModal();
+            }
+        }
+
+        // =========================================================================
+        // TAMBAHAN BARU: JAVASCRIPT KONTROL ROUTING SUB-VIEW (TANPA MERUBAH FUNGSI AWAL)
+        // =========================================================================
+
+        const originalSectionIds = ['beranda', 'profil', 'berita', 'statistik', 'aparatur', 'potensi', 'sejarah-arsip', 'prestasi', 'layanan', 'aspirasi-lokasi'];
+
+        function hideAllOriginalSections() {
+            originalSectionIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+        }
+
+        function showAllOriginalSections() {
+            originalSectionIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'berita' || id === 'aparatur' || id === 'sejarah-arsip' || id === 'layanan') {
+                        el.style.display = 'block';
+                        el.style.backgroundColor = '#f9fbf9';
+                    } else if (id === 'beranda') {
+                        el.style.display = 'block';
+                        el.style.padding = '0';
+                        el.style.maxWidth = '100%';
+                    } else {
+                        el.style.display = 'block';
+                    }
+                }
+            });
+        }
+
+        function openMenuDropdown() {
+            navList.classList.add('show');
+            menuBtn.classList.add('active');
+        }
+
+        // TAMPILKAN HALAMAN BPD
+        function showBPDView() {
+            hideAllOriginalSections();
+            document.getElementById('rt-section').style.display = 'none';
+            document.getElementById('bumdes-section').style.display = 'none';
+            document.getElementById('bpd-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // KEMBALI KE HALAMAN UTAMA
+        function goBackToMain() {
+            document.getElementById('bpd-section').style.display = 'none';
+            document.getElementById('rt-section').style.display = 'none';
+            document.getElementById('bumdes-section').style.display = 'none';
+            showAllOriginalSections();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // DATA ROUTING DINAMIS RT
+        const rtData = {
             1: {
                 title: "Halaman Informasi RT 01",
                 chief: "Bapak Muhammad Yusuf",
                 photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
                 population: "854 Jiwa (240 Kepala Keluarga)",
                 programs: [
-                    "<strong>Sistem Keamanan Lingkungan (Siskamling):</strong> Ronda malam terjadwal warga RT 01.",
-                    "<strong>Kebersihan Saluran Pembuangan:</strong> Gotong royong rutin memperlancar aliran drainase.",
-                    "<strong>Rembug Warga Bulanan:</strong> Forum musyawarah membahas program kemasyarakatan."
+                    "<strong>Siskamling Terjadwal:</strong> Ronda malam berkala warga RT 01 untuk stabilitas keamanan.",
+                    "<strong>Kerja Bakti Saluran Air:</strong> Pembersihan endapan parit pencegah limpahan hujan.",
+                    "<strong>Posyandu RT 01:</strong> Layanan timbang balita rutin per bulan."
                 ],
-                gallery: {
-                    title: "Kumpulan Dokumentasi Kegiatan RT 01",
-                    desc: "Daftar dokumentasi resmi program kerja yang telah terlaksana di lingkungan RT 01.",
-                    items: [
-                        { date: "15 Januari 2026", img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=500&q=80", desc: "Penyaluran Bantuan Sembako RT 01 bagi warga lansia prasejahtera." },
-                        { date: "02 Februari 2026", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80", desc: "Rapat koordinasi warga membahas penjadwalan pos siskamling." },
-                        { date: "10 Maret 2026", img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=500&q=80", desc: "Kegiatan kerja bakti membersihkan sumbatan sampah pada selokan utama RT 01." },
-                        { date: "24 April 2026", img: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500&q=80", desc: "Pemeriksaan kesehatan gratis berupa tensi dan kadar gula darah warga RT 01." }
-                    ]
-                }
+                galleryKey: "rt1Gallery"
             },
             2: {
                 title: "Halaman Informasi RT 02",
@@ -1764,20 +1975,11 @@
                 photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80",
                 population: "912 Jiwa (270 Kepala Keluarga)",
                 programs: [
-                    "<strong>Arisan Sosial & Santunan:</strong> Wadah pengumpulan kas peduli duka cita warga.",
-                    "<strong>Pengadaan Tong Sampah:</strong> Pemasangan tempat sampah di titik pemukiman padat.",
-                    "<strong>Penerangan Jalan Gang:</strong> Optimalisasi jaringan lampu penerangan pemukiman."
+                    "<strong>Pilahan Tong Sampah:</strong> Pembagian tong sampah pilah untuk pemukiman warga.",
+                    "<strong>Penerangan Swadaya Gang:</strong> Pemasangan lampu jalan hemat energi di lorong RT 02.",
+                    "<strong>Pengajian Bulanan RT:</strong> Silaturahmi keliling antar rukun tetangga."
                 ],
-                gallery: {
-                    title: "Kumpulan Dokumentasi Kegiatan RT 02",
-                    desc: "Daftar dokumentasi resmi program kerja yang telah terlaksana di lingkungan RT 02.",
-                    items: [
-                        { date: "12 Januari 2026", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80", desc: "Pelatihan kerajinan daur ulang plastik rumah tangga kelompok dasawisma RT 02." },
-                        { date: "18 Februari 2026", img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=500&q=80", desc: "Kerja bakti pemeliharaan jalan gang beton swadaya warga RT 02." },
-                        { date: "05 Maret 2026", img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80", desc: "Sosialisasi penanganan DBD serta pembagian serbuk pembasmi jentik nyamuk." },
-                        { date: "14 April 2026", img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=500&q=80", desc: "Pertemuan koordinasi PKK tingkat RT 02 membahas pelaporan bulanan." }
-                    ]
-                }
+                galleryKey: "rt2Gallery"
             },
             3: {
                 title: "Halaman Informasi RT 03",
@@ -1785,127 +1987,76 @@
                 photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80",
                 population: "896 Jiwa (260 Kepala Keluarga)",
                 programs: [
-                    "<strong>Program Pekarangan Gizi:</strong> Pemanfaatan pekarangan rumah tangga terpadu.",
-                    "<strong>Pemeliharaan Pos Ronda:</strong> Perbaikan fisik pos jaga keamanan malam RT 03.",
-                    "<strong>Pengajian Rutin Bulanan:</strong> Kegiatan keagamaan warga secara bergiliran."
+                    "<strong>Kebun Hidroponik Mandiri:</strong> Pembudidayaan sayur pangan di gang sempit RT 03.",
+                    "<strong>Arisan Sosial:</strong> Pengumpulan kas sosial santunan kedukaan warga.",
+                    "<strong>Kerja Bakti Sanitasi:</strong> Fogging rutin pencegah timbulnya sarang DBD."
                 ],
-                gallery: {
-                    title: "Kumpulan Dokumentasi Kegiatan RT 03",
-                    desc: "Daftar dokumentasi resmi program kerja yang telah terlaksana di lingkungan RT 03.",
-                    items: [
-                        { date: "08 Januari 2026", img: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=500&q=80", desc: "Kegiatan panen raya sayuran hidroponik program ketahanan pangan warga RT 03." },
-                        { date: "22 Februari 2026", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=80", desc: "Pemasangan tiang lampu jalan swadaya masyarakat di area terpencil RT 03." },
-                        { date: "11 Maret 2026", img: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=500&q=80", desc: "Pelepasan benih ikan tawar pada kolam budidaya kelompok ketahanan pangan RT 03." },
-                        { date: "09 April 2026", img: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500&q=80", desc: "Pemeriksaan tumbuh kembang berkala balita dan posyandu bulanan RT 03." }
-                    ]
-                }
+                galleryKey: "rt3Gallery"
             }
         };
 
-        // Logika Perpindahan Tampilan Halaman (Routing)
-        function showBPDView() {
-            document.getElementById('main-content-wrapper').style.display = 'none';
-            document.getElementById('rt-view').style.display = 'none';
-            document.getElementById('bumdes-view').style.display = 'none';
-            document.getElementById('bpd-view').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
+        // TAMPILKAN HALAMAN RT 1/2/3
         function showRTView(num) {
-            const data = dataRT[num];
+            const data = rtData[num];
             if (!data) return;
 
-            document.getElementById('rt-title').innerText = data.title;
-            document.getElementById('rt-chief').innerText = data.chief;
-            document.getElementById('rt-photo').src = data.photo;
+            document.getElementById('rt-title-heading').innerText = data.title;
+            document.getElementById('rt-chief-name').innerText = data.chief;
+            document.getElementById('rt-photo-img').src = data.photo;
             document.getElementById('rt-num').innerText = num;
-            document.getElementById('rt-population').innerText = data.population;
+            document.getElementById('rt-population-val').innerText = data.population;
 
-            const programsContainer = document.getElementById('rt-programs');
-            programsContainer.innerHTML = '';
+            const list = document.getElementById('rt-programs-list');
+            list.innerHTML = '';
             data.programs.forEach(prog => {
                 const li = document.createElement('li');
                 li.className = 'kegiatan-item';
                 li.innerHTML = prog;
-                programsContainer.appendChild(li);
+                list.appendChild(li);
             });
 
-            // Set aksi tombol galeri RT (>3 dokumentasi)
-            const galBtn = document.getElementById('rt-gallery-btn');
-            galBtn.onclick = function() {
-                openRTGalleryModal(num);
+            // Hubungkan fungsi klik folder dokumentasi RT
+            document.getElementById('rt-gallery-trigger').onclick = function() {
+                openGalleryModal(data.galleryKey);
             };
 
-            document.getElementById('main-content-wrapper').style.display = 'none';
-            document.getElementById('bpd-view').style.display = 'none';
-            document.getElementById('bumdes-view').style.display = 'none';
-            document.getElementById('rt-view').style.display = 'block';
+            hideAllOriginalSections();
+            document.getElementById('bpd-section').style.display = 'none';
+            document.getElementById('bumdes-section').style.display = 'none';
+            document.getElementById('rt-section').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function openRTGalleryModal(num) {
-            const galData = dataRT[num].gallery;
-            if (!galData) return;
+        // TAMPILKAN PANEL BUMDES & PANEL NAVIGASI CABANGNYA
+        function showBUMDesView(panelName) {
+            hideAllOriginalSections();
+            document.getElementById('bpd-section').style.display = 'none';
+            document.getElementById('rt-section').style.display = 'none';
+            document.getElementById('bumdes-section').style.display = 'block';
 
-            galleryModalTitle.innerText = galData.title;
-            galleryModalDesc.innerText = galData.desc;
-            galleryGridContainer.innerHTML = '';
+            // Sembunyikan seluruh sub-panel bumdes
+            document.getElementById('bumdes-main').style.display = 'none';
+            document.getElementById('bumdes-aset-panel').style.display = 'none';
+            document.getElementById('bumdes-proker-panel').style.display = 'none';
+            document.getElementById('bumdes-keuangan-panel').style.display = 'none';
+            document.getElementById('bumdes-kritik-panel').style.display = 'none';
 
-            galData.items.forEach(item => {
-                const itemCard = document.createElement('div');
-                itemCard.className = 'gallery-item';
-                itemCard.innerHTML = `
-                    <img src="${item.img}" alt="Dokumentasi">
-                    <p style="padding: 10px; font-size: 11px; color: var(--accent-color); font-weight:700;">📅 ${item.date}</p>
-                    <p style="padding: 0 10px 10px; font-size: 12.5px; color: var(--dark-color);">${item.desc}</p>
-                `;
-                galleryGridContainer.appendChild(itemCard);
-            });
-
-            galleryModal.classList.add('show');
-        }
-
-        function showBUMDesView(section) {
-            document.getElementById('main-content-wrapper').style.display = 'none';
-            document.getElementById('bpd-view').style.display = 'none';
-            document.getElementById('rt-view').style.display = 'none';
-            document.getElementById('bumdes-view').style.display = 'block';
-            switchBUMDesTab(section);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function switchBUMDesTab(section) {
-            // Sembunyikan semua sub-seksi BUMDes
-            document.getElementById('bumdes-main-hub').style.display = 'none';
-            document.getElementById('bumdes-aset-section').style.display = 'none';
-            document.getElementById('bumdes-proker-section').style.display = 'none';
-            document.getElementById('bumdes-keuangan-section').style.display = 'none';
-            document.getElementById('bumdes-kritik-section').style.display = 'none';
-
-            // Tampilkan sub-seksi aktif
-            if (section === 'main') {
-                document.getElementById('bumdes-main-hub').style.display = 'block';
-            } else if (section === 'aset') {
-                document.getElementById('bumdes-aset-section').style.display = 'block';
-            } else if (section === 'proker') {
-                document.getElementById('bumdes-proker-section').style.display = 'block';
-            } else if (section === 'keuangan') {
-                document.getElementById('bumdes-keuangan-section').style.display = 'block';
-            } else if (section === 'kritik') {
-                document.getElementById('bumdes-kritik-section').style.display = 'block';
+            // Tampilkan panel pilihan
+            if (panelName === 'main') {
+                document.getElementById('bumdes-main').style.display = 'block';
+            } else if (panelName === 'aset') {
+                document.getElementById('bumdes-aset-panel').style.display = 'block';
+            } else if (panelName === 'proker') {
+                document.getElementById('bumdes-proker-panel').style.display = 'block';
+            } else if (panelName === 'keuangan') {
+                document.getElementById('bumdes-keuangan-panel').style.display = 'block';
+            } else if (panelName === 'kritik') {
+                document.getElementById('bumdes-kritik-panel').style.display = 'block';
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function goBackToMain() {
-            document.getElementById('bpd-view').style.display = 'none';
-            document.getElementById('rt-view').style.display = 'none';
-            document.getElementById('bumdes-view').style.display = 'none';
-            document.getElementById('main-content-wrapper').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // LOGIKA MEMBACA EXCEL SECARA DINAMIS & OTOMATIS (SheetJS)
+        // SISTEM BACA EXCEL OTOMATIS & DINAMIS (SHEETJS)
         function formatRupiah(angka) {
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
         }
@@ -1918,62 +2069,41 @@
             reader.onload = function(e) {
                 try {
                     const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    
-                    // Baca sheet pertama
-                    const firstSheetName = workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[firstSheetName];
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    const workbook = XLSX.read(data, {type: 'array'});
+                    const sheetName = workbook.SheetNames[0];
+                    const sheet = workbook.Sheets[sheetName];
+                    const jsonRows = XLSX.utils.sheet_to_json(sheet, {header: 1});
 
                     let totalMasuk = 0;
                     let totalKeluar = 0;
 
-                    // Iterasi mencocokkan kata kunci nominal keuangan
-                    jsonData.forEach(row => {
+                    jsonRows.forEach(row => {
                         if (!row || row.length < 2) return;
-                        
-                        // Konversi seluruh elemen baris menjadi teks huruf kecil
                         const rowStr = row.map(cell => String(cell).toLowerCase()).join(' ');
-                        
-                        // Cari data bertipe angka di dalam baris
-                        const numbers = row.filter(cell => typeof cell === 'number' && !isNaN(cell));
+                        const numbersInRow = row.filter(cell => typeof cell === 'number' && !isNaN(cell));
 
-                        if (numbers.length > 0) {
-                            const nilaiUang = parseFloat(numbers[0]);
-
+                        if (numbersInRow.length > 0) {
+                            const val = parseFloat(numbersInRow[0]);
                             if (rowStr.includes('masuk') || rowStr.includes('pendapatan') || rowStr.includes('penerimaan')) {
-                                totalMasuk += nilaiUang;
+                                totalMasuk += val;
                             } else if (rowStr.includes('keluar') || rowStr.includes('pengeluaran') || rowStr.includes('belanja')) {
-                                totalKeluar += nilaiUang;
+                                totalKeluar += val;
                             }
                         }
                     });
 
-                    // Update tampilan nominal di layar secara real-time
                     if (totalMasuk > 0 || totalKeluar > 0) {
                         document.getElementById('uang-masuk-val').innerText = formatRupiah(totalMasuk);
                         document.getElementById('uang-keluar-val').innerText = formatRupiah(totalKeluar);
-                        alert("Berkas Excel berhasil dibaca! Nominal keuangan diperbarui secara otomatis.");
+                        alert("Laporan Keuangan Excel berhasil diproses! Nominal kas otomatis diperbarui.");
                     } else {
-                        alert("File terbaca, namun rincian baris tidak mengandung kata kunci 'masuk/pendapatan' atau 'keluar/pengeluaran'. Angka default dipertahankan.");
+                        alert("File berhasil dibaca, namun baris transaksi tidak mengandung kata kunci 'masuk' atau 'keluar'.");
                     }
-                } catch (error) {
-                    alert("Gagal memproses berkas Excel. Pastikan berkas Anda tidak rusak.");
+                } catch(err) {
+                    alert("Gagal membaca dokumen Excel. Periksa kembali struktur file.");
                 }
             };
             reader.readAsArrayBuffer(file);
-        }
-
-        // Menutup menu dropdown / modal saat mengklik area di luar elemen
-        window.onclick = function(event) {
-            if (!menuBtn.contains(event.target) && !navList.contains(event.target)) {
-                closeDropdown();
-            }
-            if (event.target == bioModal) {
-                closeBioModal();
-            } else if (event.target == galleryModal) {
-                closeGalleryModal();
-            }
         }
     </script>
 </body>
